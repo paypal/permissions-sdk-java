@@ -2,6 +2,7 @@ package com.sample.permissions;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,19 +22,22 @@ import com.paypal.exception.SSLConfigurationException;
 import com.paypal.sdk.exceptions.OAuthException;
 import com.paypal.svcs.services.PermissionsService;
 import com.paypal.svcs.types.common.RequestEnvelope;
-import com.paypal.svcs.types.perm.RequestPermissionsRequest;
-import com.paypal.svcs.types.perm.RequestPermissionsResponse;
+import com.paypal.svcs.types.perm.GetBasicPersonalDataRequest;
+import com.paypal.svcs.types.perm.GetBasicPersonalDataResponse;
+import com.paypal.svcs.types.perm.PersonalAttribute;
+import com.paypal.svcs.types.perm.PersonalAttributeList;
+import com.paypal.svcs.types.perm.PersonalData;
 
 /**
- * Servlet implementation class RequestPermissionsServlet
+ * Servlet implementation class GetBasicPersonalDataServlet
  */
-public class RequestPermissionsServlet extends HttpServlet {
+public class GetBasicPersonalDataServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public RequestPermissionsServlet() {
+	public GetBasicPersonalDataServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -46,7 +50,7 @@ public class RequestPermissionsServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		getServletConfig().getServletContext()
-				.getRequestDispatcher("/RequestPermissions.jsp")
+				.getRequestDispatcher("/GetBasicPersonalData.jsp")
 				.forward(request, response);
 	}
 
@@ -62,25 +66,27 @@ public class RequestPermissionsServlet extends HttpServlet {
 		session.setAttribute(
 				"relatedUrl",
 				"<ul><li><a href='RequestPermissions'>RequestPermissions</a></li><li><a href='GetAccessToken'>GetAccessToken</a></li><li><a href='GetPermissions'>GetPermissions</a></li><li><a href='CancelPermissions'>CancelPermissions</a></li><li><a href='GetBasicPersonalData'>GetBasicPersonalData</a></li><li><a href='GetAdvancedPersonalData'>GetAdvancedPersonalData</a></li></ul>");
-		RequestEnvelope env = new RequestEnvelope("en_US");
-		List<String> scope = new ArrayList<String>();
-		String check[] = request.getParameterValues("api");
+		GetBasicPersonalDataRequest req = new GetBasicPersonalDataRequest();
+		RequestEnvelope requestEnvelope = new RequestEnvelope("en_US");
+		req.setRequestEnvelope(requestEnvelope);
+		List<PersonalAttribute> lst = new ArrayList<PersonalAttribute>();
+		String check[] = request.getParameterValues("attr");
 		for (int i = 0; i < check.length; i++) {
-			scope.add(check[i]);
+			lst.add(PersonalAttribute.fromValue(check[i]));
 		}
-		response.setContentType("text/html");
+		PersonalAttributeList attribute = new PersonalAttributeList();
+		attribute.setAttribute(lst);
+		req.setAttributeList(attribute);
 
-		String callback = request.getParameter("callback");
+		PermissionsService service = new PermissionsService(this
+				.getServletContext().getRealPath("/")
+				+ "/WEB-INF/sdk_config.properties");
 		try {
-
-			RequestPermissionsRequest permRequest = new RequestPermissionsRequest(
-					scope, callback);
-			permRequest.setRequestEnvelope(env);
-			PermissionsService service = new PermissionsService(this
-					.getServletContext().getRealPath("/")
-					+ "/WEB-INF/sdk_config.properties");
-			RequestPermissionsResponse resp = service
-					.requestPermissions(permRequest);
+			service.setAccessToken(request.getParameter("accessToken"));
+			service.setTokenSecret(request.getParameter("tokenSecret"));
+			GetBasicPersonalDataResponse resp = service
+					.getBasicPersonalData(req);
+			response.setContentType("text/html");
 			if (resp != null) {
 				session.setAttribute("lastReq", service.getLastRequest());
 				session.setAttribute("lastResp", service.getLastResponse());
@@ -88,12 +94,17 @@ public class RequestPermissionsServlet extends HttpServlet {
 						.equalsIgnoreCase("SUCCESS")) {
 					Map<Object, Object> map = new LinkedHashMap<Object, Object>();
 					map.put("Ack", resp.getResponseEnvelope().getAck());
-					map.put("RequestToken", resp.getToken());
-					map.put("Redirect URL",
-							"<a href=https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_grant-permission&request_token="
-									+ resp.getToken()
-									+ ">https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_grant-permission&request_token="
-									+ resp.getToken() + "</a>");
+					Iterator<PersonalData> iterator = resp.getResponse()
+							.getPersonalData().iterator();
+					int index = 1;
+					while (iterator.hasNext()) {
+						PersonalData personalData = iterator.next();
+						map.put("PersonalDataKey" + index, personalData
+								.getPersonalDataKey().getValue());
+						map.put("PersonalDataValue" + index,
+								personalData.getPersonalDataValue());
+						index++;
+					}
 					session.setAttribute("map", map);
 					response.sendRedirect("/permissions-sample/Response.jsp");
 				} else {

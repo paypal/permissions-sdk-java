@@ -98,7 +98,7 @@ public class GetAccessTokenResponse {
 		if( map.containsKey(prefix + "tokenSecret") ) {
 			this.tokenSecret = map.get(prefix + "tokenSecret");
 		}
-		for(int i=0; i<10; i++) {
+		for(int i=0; i<map.size(); i++) {
 			if( map.containsKey(prefix + "error" + '(' + i + ')'+ ".errorId") ) {
 				String newPrefix = prefix + "error" + '(' + i + ')' + '.';
 				this.error.add(new ErrorData(map, newPrefix));

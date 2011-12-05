@@ -1,0 +1,4 @@
+PayPal  Java Permissions SDK - 1.84.0
+Release Date  - 5-Dec-2011
+This release contains new Permissions SDK (NVP) and samples for Permissions api's.
+==========================================================================================================

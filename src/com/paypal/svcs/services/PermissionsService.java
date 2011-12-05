@@ -17,6 +17,10 @@ import com.paypal.svcs.types.perm.CancelPermissionsRequest;
 import com.paypal.svcs.types.perm.CancelPermissionsResponse;
 import com.paypal.svcs.types.perm.GetAccessTokenRequest;
 import com.paypal.svcs.types.perm.GetAccessTokenResponse;
+import com.paypal.svcs.types.perm.GetAdvancedPersonalDataRequest;
+import com.paypal.svcs.types.perm.GetAdvancedPersonalDataResponse;
+import com.paypal.svcs.types.perm.GetBasicPersonalDataRequest;
+import com.paypal.svcs.types.perm.GetBasicPersonalDataResponse;
 import com.paypal.svcs.types.perm.GetPermissionsRequest;
 import com.paypal.svcs.types.perm.GetPermissionsResponse;
 import com.paypal.svcs.types.perm.RequestPermissionsRequest;
@@ -129,6 +133,48 @@ public class PermissionsService extends BaseService {
 
 	public CancelPermissionsResponse cancelPermissions (CancelPermissionsRequest CancelPermissionsRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
 		return cancelPermissions(CancelPermissionsRequest, null);
+	}
+
+	/**
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	public GetBasicPersonalDataResponse getBasicPersonalData (GetBasicPersonalDataRequest GetBasicPersonalDataRequest,  String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		String response = call("GetBasicPersonalData", GetBasicPersonalDataRequest.toNVPString(), apiUsername);
+		return new GetBasicPersonalDataResponse(NVPUtil.decode(response), "");
+	}
+
+	public GetBasicPersonalDataResponse getBasicPersonalData (GetBasicPersonalDataRequest GetBasicPersonalDataRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		return getBasicPersonalData(GetBasicPersonalDataRequest, null);
+	}
+
+	/**
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	public GetAdvancedPersonalDataResponse getAdvancedPersonalData (GetAdvancedPersonalDataRequest GetAdvancedPersonalDataRequest,  String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		String response = call("GetAdvancedPersonalData", GetAdvancedPersonalDataRequest.toNVPString(), apiUsername);
+		return new GetAdvancedPersonalDataResponse(NVPUtil.decode(response), "");
+	}
+
+	public GetAdvancedPersonalDataResponse getAdvancedPersonalData (GetAdvancedPersonalDataRequest GetAdvancedPersonalDataRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		return getAdvancedPersonalData(GetAdvancedPersonalDataRequest, null);
 	}
 
 }
