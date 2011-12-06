@@ -98,11 +98,11 @@ public class GetAccessTokenResponse {
 		if( map.containsKey(prefix + "tokenSecret") ) {
 			this.tokenSecret = map.get(prefix + "tokenSecret");
 		}
-		for(int i=0; i<map.size(); i++) {
+int i=0;		while(true) {
 			if( map.containsKey(prefix + "error" + '(' + i + ')'+ ".errorId") ) {
 				String newPrefix = prefix + "error" + '(' + i + ')' + '.';
 				this.error.add(new ErrorData(map, newPrefix));
 			}
-		}
+else break;i++;		}
 	}
 }

@@ -65,11 +65,11 @@ public class GetPermissionsResponse {
 				this.scope.add(map.get(prefix + "scope" + '(' + i + ')'));
 			}
 		}
-		for(int i=0; i<map.size(); i++) {
+int i=0;		while(true) {
 			if( map.containsKey(prefix + "error" + '(' + i + ')'+ ".errorId") ) {
 				String newPrefix = prefix + "error" + '(' + i + ')' + '.';
 				this.error.add(new ErrorData(map, newPrefix));
 			}
-		}
+else break;i++;		}
 	}
 }
