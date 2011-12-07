@@ -89,10 +89,10 @@ public class GetAccessTokenServlet extends HttpServlet {
 					map.put("AccessToken", resp.getToken());
 					map.put("TokenSecret", resp.getTokenSecret());
 					session.setAttribute("map", map);
-					response.sendRedirect("/permissions-sample/Response.jsp");
+					response.sendRedirect("Response.jsp");
 				} else {
 					session.setAttribute("Error", resp.getError());
-					response.sendRedirect("/permissions-sample/Error.jsp");
+					response.sendRedirect("Error.jsp");
 				}
 			}
 		} catch (OAuthException e) {

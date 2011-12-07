@@ -95,10 +95,10 @@ public class RequestPermissionsServlet extends HttpServlet {
 									+ ">https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_grant-permission&request_token="
 									+ resp.getToken() + "</a>");
 					session.setAttribute("map", map);
-					response.sendRedirect("/permissions-sample/Response.jsp");
+					response.sendRedirect("Response.jsp");
 				} else {
 					session.setAttribute("Error", resp.getError());
-					response.sendRedirect("/permissions-sample/Error.jsp");
+					response.sendRedirect("Error.jsp");
 				}
 			}
 

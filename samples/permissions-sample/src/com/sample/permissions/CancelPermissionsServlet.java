@@ -78,10 +78,10 @@ public class CancelPermissionsServlet extends HttpServlet {
 					Map<Object, Object> map = new LinkedHashMap<Object, Object>();
 					map.put("Ack", resp.getResponseEnvelope().getAck());
 					session.setAttribute("map", map);
-					response.sendRedirect("/permissions-sample/Response.jsp");
+					response.sendRedirect("Response.jsp");
 				} else {
 					session.setAttribute("Error", resp.getError());
-					response.sendRedirect("/permissions-sample/Error.jsp");
+					response.sendRedirect("Error.jsp");
 				}
 			}
 		} catch (OAuthException e) {
