@@ -1,3 +1,7 @@
+PayPal  Java Permissions SDK - 0.6.88
+Release Date  - 13-Apr-2012
+This release contains wsdl update version 88.0
+==========================================================================================================
 PayPal  Java Permissions SDK - 0.6.86
 Release Date  - 27-Feb-2012
 This release contains new Permissions SDK (NVP) and samples for Permissions api's.
