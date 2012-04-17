@@ -30,11 +30,14 @@ public class PersonalDataList {
 	public PersonalDataList() {
 	}
 	public PersonalDataList(Map<String, String> map, String prefix) {
-int i=0;		while(true) {
+		int i=0;
+		while(true) {
 			if( map.containsKey(prefix + "personalData" + '(' + i + ')'+ ".personalDataValue") ) {
 				String newPrefix = prefix + "personalData" + '(' + i + ')' + '.';
 				this.personalData.add(new PersonalData(map, newPrefix));
 			}
-else break;i++;		}
+			else break;
+			i++;
+		}
 	}
 }
