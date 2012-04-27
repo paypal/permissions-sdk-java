@@ -87,8 +87,8 @@ public class GetAccessTokenResponse {
 			String newPrefix = prefix + "responseEnvelope" + '.';
 			this.responseEnvelope =  new ResponseEnvelope(map, newPrefix);
 		}
-		int i=0;
-		while(true) {
+		 while(true) {
+		int i=0; 
 			if( map.containsKey(prefix + "scope" + '(' + i + ')') ) {
 				this.scope.add(map.get(prefix + "scope" + '(' + i + ')'));
 			}
@@ -101,8 +101,8 @@ public class GetAccessTokenResponse {
 		if( map.containsKey(prefix + "tokenSecret") ) {
 			this.tokenSecret = map.get(prefix + "tokenSecret");
 		}
-		int i=0;
-		while(true) {
+		 while(true) {
+		int i=0; 
 			if( map.containsKey(prefix + "error" + '(' + i + ')'+ ".errorId") ) {
 				String newPrefix = prefix + "error" + '(' + i + ')' + '.';
 				this.error.add(new ErrorData(map, newPrefix));

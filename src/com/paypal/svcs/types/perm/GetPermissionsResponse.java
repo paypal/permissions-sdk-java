@@ -60,16 +60,16 @@ public class GetPermissionsResponse {
 			String newPrefix = prefix + "responseEnvelope" + '.';
 			this.responseEnvelope =  new ResponseEnvelope(map, newPrefix);
 		}
-		int i=0;
-		while(true) {
+		 while(true) {
+		int i=0; 
 			if( map.containsKey(prefix + "scope" + '(' + i + ')') ) {
 				this.scope.add(map.get(prefix + "scope" + '(' + i + ')'));
 			}
 			else break;
 			i++;
 		}
-		int i=0;
-		while(true) {
+		 while(true) {
+		int i=0; 
 			if( map.containsKey(prefix + "error" + '(' + i + ')'+ ".errorId") ) {
 				String newPrefix = prefix + "error" + '(' + i + ')' + '.';
 				this.error.add(new ErrorData(map, newPrefix));
