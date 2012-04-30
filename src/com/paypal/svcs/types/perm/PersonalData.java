@@ -42,6 +42,7 @@ public class PersonalData {
 	public PersonalData() {
 	}
 	public PersonalData(Map<String, String> map, String prefix) {
+		int i=0; 
 		if( map.containsKey(prefix + "personalDataKey") ) {
 			this.personalDataKey = PersonalAttribute.fromValue( map.get(prefix + "personalDataKey") );
 		}

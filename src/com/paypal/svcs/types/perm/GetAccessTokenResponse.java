@@ -83,12 +83,13 @@ public class GetAccessTokenResponse {
 	public GetAccessTokenResponse() {
 	}
 	public GetAccessTokenResponse(Map<String, String> map, String prefix) {
+		int i=0; 
 		if( map.containsKey(prefix + "responseEnvelope" + ".timestamp") ) {
 			String newPrefix = prefix + "responseEnvelope" + '.';
 			this.responseEnvelope =  new ResponseEnvelope(map, newPrefix);
 		}
+		 i=0; 
 		 while(true) {
-		int i=0; 
 			if( map.containsKey(prefix + "scope" + '(' + i + ')') ) {
 				this.scope.add(map.get(prefix + "scope" + '(' + i + ')'));
 			}
@@ -101,8 +102,8 @@ public class GetAccessTokenResponse {
 		if( map.containsKey(prefix + "tokenSecret") ) {
 			this.tokenSecret = map.get(prefix + "tokenSecret");
 		}
+		 i=0; 
 		 while(true) {
-		int i=0; 
 			if( map.containsKey(prefix + "error" + '(' + i + ')'+ ".errorId") ) {
 				String newPrefix = prefix + "error" + '(' + i + ')' + '.';
 				this.error.add(new ErrorData(map, newPrefix));

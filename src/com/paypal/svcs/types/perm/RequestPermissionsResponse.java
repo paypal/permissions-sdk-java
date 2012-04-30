@@ -59,6 +59,7 @@ public class RequestPermissionsResponse {
 	public RequestPermissionsResponse() {
 	}
 	public RequestPermissionsResponse(Map<String, String> map, String prefix) {
+		int i=0; 
 		if( map.containsKey(prefix + "responseEnvelope" + ".timestamp") ) {
 			String newPrefix = prefix + "responseEnvelope" + '.';
 			this.responseEnvelope =  new ResponseEnvelope(map, newPrefix);
@@ -66,8 +67,8 @@ public class RequestPermissionsResponse {
 		if( map.containsKey(prefix + "token") ) {
 			this.token = map.get(prefix + "token");
 		}
+		 i=0; 
 		 while(true) {
-		int i=0; 
 			if( map.containsKey(prefix + "error" + '(' + i + ')'+ ".errorId") ) {
 				String newPrefix = prefix + "error" + '(' + i + ')' + '.';
 				this.error.add(new ErrorData(map, newPrefix));
