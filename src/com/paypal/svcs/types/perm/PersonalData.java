@@ -1,53 +1,73 @@
-
-/**
- * Auto generated code
- */
-
 package com.paypal.svcs.types.perm;
-
 import com.paypal.svcs.types.perm.PersonalAttribute;
 import java.util.Map;
 
-
 /**
- * A property of User Identity data , represented as a Name-value pair with Name being the PersonalAttribute requested and value being the data.
+ * A property of User Identity data , represented as a
+ * Name-value pair with Name being the PersonalAttribute
+ * requested and value being the data. 
  */
-public class PersonalData {
+public class PersonalData{
+
 
 	/**
-	 *
-	 * @Required
-	 */
+	 * No Document Comments	  
+	 *@Required	 
+	 */ 
 	private PersonalAttribute personalDataKey;
-	public PersonalAttribute getPersonalDataKey() {
-		return personalDataKey;
-	}
-	public void setPersonalDataKey(PersonalAttribute value) {
-		this.personalDataKey = value;
-	}
 
 	/**
-	 *
-	 * @Required
-	 */
+	 * No Document Comments	  
+	 *@Required	 
+	 */ 
 	private String personalDataValue;
-	public String getPersonalDataValue() {
-		return personalDataValue;
-	}
-	public void setPersonalDataValue(String value) {
-		this.personalDataValue = value;
-	}
+
+	
+
+	/**
+	 * Default Constructor
+	 */
+	public PersonalData (){
+	}	
+
+	/**
+	 * Getter for personalDataKey
+	 */
+	 public PersonalAttribute getPersonalDataKey() {
+	 	return personalDataKey;
+	 }
+	 
+	/**
+	 * Setter for personalDataKey
+	 */
+	 public void setPersonalDataKey(PersonalAttribute personalDataKey) {
+	 	this.personalDataKey = personalDataKey;
+	 }
+	 
+	/**
+	 * Getter for personalDataValue
+	 */
+	 public String getPersonalDataValue() {
+	 	return personalDataValue;
+	 }
+	 
+	/**
+	 * Setter for personalDataValue
+	 */
+	 public void setPersonalDataValue(String personalDataValue) {
+	 	this.personalDataValue = personalDataValue;
+	 }
+	 
 
 
-	public PersonalData() {
-	}
 	public PersonalData(Map<String, String> map, String prefix) {
-		int i=0; 
-		if( map.containsKey(prefix + "personalDataKey") ) {
-			this.personalDataKey = PersonalAttribute.fromValue( map.get(prefix + "personalDataKey") );
+		int i = 0;
+		if(map.containsKey(prefix + "personalDataKey")){
+			this.personalDataKey = PersonalAttribute.fromValue(map.get(prefix + "personalDataKey"));
 		}
-		if( map.containsKey(prefix + "personalDataValue") ) {
+		if(map.containsKey(prefix + "personalDataValue")){
 			this.personalDataValue = map.get(prefix + "personalDataValue");
 		}
 	}
+
 }

@@ -1,57 +1,53 @@
-/**
- * PermissionsService wrapper class
- * Auto generated code
- */
 package com.paypal.svcs.services;
-
+import java.io.*;
 import com.paypal.core.BaseService;
+import com.paypal.exception.*;
 import com.paypal.core.NVPUtil;
-import com.paypal.exception.ClientActionRequiredException;
-import com.paypal.exception.HttpErrorException;
-import com.paypal.exception.InvalidCredentialException;
-import com.paypal.exception.InvalidResponseDataException;
-import com.paypal.exception.MissingCredentialException;
-import com.paypal.exception.SSLConfigurationException;
-import com.paypal.sdk.exceptions.OAuthException;
-import com.paypal.svcs.types.perm.CancelPermissionsRequest;
-import com.paypal.svcs.types.perm.CancelPermissionsResponse;
-import com.paypal.svcs.types.perm.GetAccessTokenRequest;
-import com.paypal.svcs.types.perm.GetAccessTokenResponse;
-import com.paypal.svcs.types.perm.GetAdvancedPersonalDataRequest;
-import com.paypal.svcs.types.perm.GetAdvancedPersonalDataResponse;
-import com.paypal.svcs.types.perm.GetBasicPersonalDataRequest;
-import com.paypal.svcs.types.perm.GetBasicPersonalDataResponse;
-import com.paypal.svcs.types.perm.GetPermissionsRequest;
-import com.paypal.svcs.types.perm.GetPermissionsResponse;
 import com.paypal.svcs.types.perm.RequestPermissionsRequest;
 import com.paypal.svcs.types.perm.RequestPermissionsResponse;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import com.paypal.svcs.types.perm.GetAccessTokenRequest;
+import com.paypal.svcs.types.perm.GetAccessTokenResponse;
+import com.paypal.svcs.types.perm.GetPermissionsRequest;
+import com.paypal.svcs.types.perm.GetPermissionsResponse;
+import com.paypal.svcs.types.perm.CancelPermissionsRequest;
+import com.paypal.svcs.types.perm.CancelPermissionsResponse;
+import com.paypal.svcs.types.perm.GetBasicPersonalDataRequest;
+import com.paypal.svcs.types.perm.GetBasicPersonalDataResponse;
+import com.paypal.svcs.types.perm.GetAdvancedPersonalDataRequest;
+import com.paypal.svcs.types.perm.GetAdvancedPersonalDataResponse;
+import com.paypal.sdk.exceptions.OAuthException;
+
+public class PermissionsService extends BaseService{
 
 
-public class PermissionsService extends BaseService {
+	// Service Version
+	public static final String SERVICE_VERSION = "";
 
-	private static final String SERVICE_VERSION = "";
-	private static final String SERVICE_NAME = "Permissions";
+	// Service Name
+	public static final String SERVICE_NAME = "Permissions";
 
+	
 	public PermissionsService(File configFile) throws IOException, FileNotFoundException {
 		super(SERVICE_NAME, SERVICE_VERSION);
 		initConfig(configFile);
-	}
+	}		
+
 	public PermissionsService(InputStream config) throws IOException, FileNotFoundException {
 		super(SERVICE_NAME, SERVICE_VERSION);
 		initConfig(config);
 	}
+
 	public PermissionsService(String configFilePath) throws IOException, FileNotFoundException {
 		super(SERVICE_NAME, SERVICE_VERSION);
 		initConfig(configFilePath);
+	}
+
+
+
 		
-	}
-
-	/**
+	/**	
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -63,16 +59,14 @@ public class PermissionsService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	public RequestPermissionsResponse requestPermissions (RequestPermissionsRequest RequestPermissionsRequest,  String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		String response = call("RequestPermissions", RequestPermissionsRequest.toNVPString(), apiUsername);
+	 public RequestPermissionsResponse requestPermissions(RequestPermissionsRequest requestPermissionsRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	String response = call("RequestPermissions", requestPermissionsRequest.toNVPString(), apiUsername);
 		return new RequestPermissionsResponse(NVPUtil.decode(response), "");
-	}
-
-	public RequestPermissionsResponse requestPermissions (RequestPermissionsRequest RequestPermissionsRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		return requestPermissions(RequestPermissionsRequest, null);
-	}
-
-	/**
+	 }
+	 
+	/** 
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -84,16 +78,32 @@ public class PermissionsService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	public GetAccessTokenResponse getAccessToken (GetAccessTokenRequest GetAccessTokenRequest,  String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		String response = call("GetAccessToken", GetAccessTokenRequest.toNVPString(), apiUsername);
+	 public RequestPermissionsResponse requestPermissions(RequestPermissionsRequest requestPermissionsRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	return requestPermissions(requestPermissionsRequest, null);
+	 }
+		
+	/**	
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public GetAccessTokenResponse getAccessToken(GetAccessTokenRequest getAccessTokenRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	String response = call("GetAccessToken", getAccessTokenRequest.toNVPString(), apiUsername);
 		return new GetAccessTokenResponse(NVPUtil.decode(response), "");
-	}
-
-	public GetAccessTokenResponse getAccessToken (GetAccessTokenRequest GetAccessTokenRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		return getAccessToken(GetAccessTokenRequest, null);
-	}
-
-	/**
+	 }
+	 
+	/** 
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -105,16 +115,32 @@ public class PermissionsService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	public GetPermissionsResponse getPermissions (GetPermissionsRequest GetPermissionsRequest,  String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		String response = call("GetPermissions", GetPermissionsRequest.toNVPString(), apiUsername);
+	 public GetAccessTokenResponse getAccessToken(GetAccessTokenRequest getAccessTokenRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	return getAccessToken(getAccessTokenRequest, null);
+	 }
+		
+	/**	
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public GetPermissionsResponse getPermissions(GetPermissionsRequest getPermissionsRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	String response = call("GetPermissions", getPermissionsRequest.toNVPString(), apiUsername);
 		return new GetPermissionsResponse(NVPUtil.decode(response), "");
-	}
-
-	public GetPermissionsResponse getPermissions (GetPermissionsRequest GetPermissionsRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		return getPermissions(GetPermissionsRequest, null);
-	}
-
-	/**
+	 }
+	 
+	/** 
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -126,16 +152,32 @@ public class PermissionsService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	public CancelPermissionsResponse cancelPermissions (CancelPermissionsRequest CancelPermissionsRequest,  String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		String response = call("CancelPermissions", CancelPermissionsRequest.toNVPString(), apiUsername);
+	 public GetPermissionsResponse getPermissions(GetPermissionsRequest getPermissionsRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	return getPermissions(getPermissionsRequest, null);
+	 }
+		
+	/**	
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public CancelPermissionsResponse cancelPermissions(CancelPermissionsRequest cancelPermissionsRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	String response = call("CancelPermissions", cancelPermissionsRequest.toNVPString(), apiUsername);
 		return new CancelPermissionsResponse(NVPUtil.decode(response), "");
-	}
-
-	public CancelPermissionsResponse cancelPermissions (CancelPermissionsRequest CancelPermissionsRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		return cancelPermissions(CancelPermissionsRequest, null);
-	}
-
-	/**
+	 }
+	 
+	/** 
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -147,16 +189,32 @@ public class PermissionsService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	public GetBasicPersonalDataResponse getBasicPersonalData (GetBasicPersonalDataRequest GetBasicPersonalDataRequest,  String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		String response = call("GetBasicPersonalData", GetBasicPersonalDataRequest.toNVPString(), apiUsername);
+	 public CancelPermissionsResponse cancelPermissions(CancelPermissionsRequest cancelPermissionsRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	return cancelPermissions(cancelPermissionsRequest, null);
+	 }
+		
+	/**	
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public GetBasicPersonalDataResponse getBasicPersonalData(GetBasicPersonalDataRequest getBasicPersonalDataRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	String response = call("GetBasicPersonalData", getBasicPersonalDataRequest.toNVPString(), apiUsername);
 		return new GetBasicPersonalDataResponse(NVPUtil.decode(response), "");
-	}
-
-	public GetBasicPersonalDataResponse getBasicPersonalData (GetBasicPersonalDataRequest GetBasicPersonalDataRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		return getBasicPersonalData(GetBasicPersonalDataRequest, null);
-	}
-
-	/**
+	 }
+	 
+	/** 
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -168,13 +226,46 @@ public class PermissionsService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	public GetAdvancedPersonalDataResponse getAdvancedPersonalData (GetAdvancedPersonalDataRequest GetAdvancedPersonalDataRequest,  String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		String response = call("GetAdvancedPersonalData", GetAdvancedPersonalDataRequest.toNVPString(), apiUsername);
+	 public GetBasicPersonalDataResponse getBasicPersonalData(GetBasicPersonalDataRequest getBasicPersonalDataRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	return getBasicPersonalData(getBasicPersonalDataRequest, null);
+	 }
+		
+	/**	
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public GetAdvancedPersonalDataResponse getAdvancedPersonalData(GetAdvancedPersonalDataRequest getAdvancedPersonalDataRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	String response = call("GetAdvancedPersonalData", getAdvancedPersonalDataRequest.toNVPString(), apiUsername);
 		return new GetAdvancedPersonalDataResponse(NVPUtil.decode(response), "");
-	}
+	 }
+	 
+	/** 
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public GetAdvancedPersonalDataResponse getAdvancedPersonalData(GetAdvancedPersonalDataRequest getAdvancedPersonalDataRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	return getAdvancedPersonalData(getAdvancedPersonalDataRequest, null);
+	 }
 
-	public GetAdvancedPersonalDataResponse getAdvancedPersonalData (GetAdvancedPersonalDataRequest GetAdvancedPersonalDataRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		return getAdvancedPersonalData(GetAdvancedPersonalDataRequest, null);
-	}
 
 }
