@@ -7,48 +7,49 @@ import com.paypal.svcs.types.common.ErrorParameter;
 import java.util.Map;
 
 /**
- * No Document Comments
+ * 
  */
 public class ErrorData{
 
 
 	/**
-	 * No Document Comments	 
+	 * 	  
+	 *@Required	 
 	 */ 
 	private Integer errorId;
 
 	/**
-	 * No Document Comments	 
+	 * 	 
 	 */ 
 	private String domain;
 
 	/**
-	 * No Document Comments	 
+	 * 	 
 	 */ 
 	private String subdomain;
 
 	/**
-	 * No Document Comments	 
+	 * 	 
 	 */ 
 	private ErrorSeverity severity;
 
 	/**
-	 * No Document Comments	 
+	 * 	 
 	 */ 
 	private ErrorCategory category;
 
 	/**
-	 * No Document Comments	 
+	 * 	 
 	 */ 
 	private String message;
 
 	/**
-	 * No Document Comments	 
+	 * 	 
 	 */ 
 	private String exceptionId;
 
 	/**
-	 * No Document Comments	 
+	 * 	 
 	 */ 
 	private List<ErrorParameter> parameter = new ArrayList<ErrorParameter>();
 
@@ -200,7 +201,7 @@ public class ErrorData{
 		i = 0;
 		while(true) {
 			if(map.containsKey(prefix + "parameter" + "(" + i + ")")){
-				String newPrefix = prefix + "parameter" + "(" + i + ")" + ".";
+				String newPrefix = prefix + "parameter" + "(" + i + ")";
 				this.parameter.add(new ErrorParameter(map, newPrefix));
 			} else {
 				break;

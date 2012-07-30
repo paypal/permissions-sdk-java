@@ -14,7 +14,7 @@ public class GetAccessTokenResponse{
 
 
 	/**
-	 * No Document Comments	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private ResponseEnvelope responseEnvelope;
@@ -38,7 +38,7 @@ public class GetAccessTokenResponse{
 	private String tokenSecret;
 
 	/**
-	 * No Document Comments	 
+	 * 	 
 	 */ 
 	private List<ErrorData> error = new ArrayList<ErrorData>();
 
@@ -145,7 +145,7 @@ public class GetAccessTokenResponse{
 		}
 		i = 0;
 		while(true) {
-			if(map.containsKey(prefix + "error" + "(" + i + ")" + ".parameter(0)")){
+			if(map.containsKey(prefix + "error" + "(" + i + ")" + ".errorId")){
 				String newPrefix = prefix + "error" + "(" + i + ")" + ".";
 				this.error.add(new ErrorData(map, newPrefix));
 			} else {

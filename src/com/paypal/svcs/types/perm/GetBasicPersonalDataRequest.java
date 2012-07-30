@@ -14,12 +14,12 @@ public class GetBasicPersonalDataRequest{
 
 
 	/**
-	 * No Document Comments	 
+	 * 	 
 	 */ 
 	private RequestEnvelope requestEnvelope;
 
 	/**
-	 * No Document Comments	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private PersonalAttributeList attributeList;

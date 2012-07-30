@@ -11,7 +11,7 @@ public class GetPermissionsRequest{
 
 
 	/**
-	 * No Document Comments	 
+	 * 	 
 	 */ 
 	private RequestEnvelope requestEnvelope;
 

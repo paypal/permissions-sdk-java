@@ -11,12 +11,12 @@ public class CancelPermissionsRequest{
 
 
 	/**
-	 * No Document Comments	 
+	 * 	 
 	 */ 
 	private RequestEnvelope requestEnvelope;
 
 	/**
-	 * No Document Comments	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private String token;

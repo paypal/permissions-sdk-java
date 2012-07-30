@@ -12,7 +12,7 @@ public class PersonalAttributeList{
 
 
 	/**
-	 * No Document Comments	 
+	 * 	 
 	 */ 
 	private List<PersonalAttribute> attribute = new ArrayList<PersonalAttribute>();
 

@@ -12,7 +12,7 @@ public class GetAccessTokenRequest{
 
 
 	/**
-	 * No Document Comments	 
+	 * 	 
 	 */ 
 	private RequestEnvelope requestEnvelope;
 

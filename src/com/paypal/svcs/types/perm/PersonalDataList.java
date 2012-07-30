@@ -12,7 +12,7 @@ public class PersonalDataList{
 
 
 	/**
-	 * No Document Comments	 
+	 * 	 
 	 */ 
 	private List<PersonalData> personalData = new ArrayList<PersonalData>();
 

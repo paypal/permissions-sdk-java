@@ -11,13 +11,13 @@ public class PersonalData{
 
 
 	/**
-	 * No Document Comments	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private PersonalAttribute personalDataKey;
 
 	/**
-	 * No Document Comments	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private String personalDataValue;
