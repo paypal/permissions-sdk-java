@@ -60,14 +60,29 @@ public class PersonalData{
 	 
 
 
-	public PersonalData(Map<String, String> map, String prefix) {
+	
+	public static PersonalData createInstance(Map<String, String> map, String prefix, int index) {
+		PersonalData personalData = null;
 		int i = 0;
-		if(map.containsKey(prefix + "personalDataKey")){
-			this.personalDataKey = PersonalAttribute.fromValue(map.get(prefix + "personalDataKey"));
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
 		}
-		if(map.containsKey(prefix + "personalDataValue")){
-			this.personalDataValue = map.get(prefix + "personalDataValue");
+			
+		if (map.containsKey(prefix + "personalDataKey")) {
+				personalData = (personalData == null) ? new PersonalData() : personalData;
+				personalData.setPersonalDataKey(PersonalAttribute.fromValue(map.get(prefix + "personalDataKey")));
 		}
+		if (map.containsKey(prefix + "personalDataValue")) {
+				personalData = (personalData == null) ? new PersonalData() : personalData;
+				personalData.setPersonalDataValue(map.get(prefix + "personalDataValue"));
+		}
+		return personalData;
 	}
-
+ 
 }

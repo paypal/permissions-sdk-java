@@ -80,6 +80,7 @@ public class GetAccessTokenServlet extends HttpServlet {
 			GetAccessTokenResponse resp = service.getAccessToken(tokenReq);
 
 			if (resp != null) {
+				session.setAttribute("RESPONSE_OBJECT", resp);
 				session.setAttribute("lastReq", service.getLastRequest());
 				session.setAttribute("lastResp", service.getLastResponse());
 				if (resp.getResponseEnvelope().getAck().toString()

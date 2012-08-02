@@ -71,6 +71,7 @@ public class CancelPermissionsServlet extends HttpServlet {
 			CancelPermissionsResponse resp = service.cancelPermissions(req);
 			response.setContentType("text/html");
 			if (resp != null) {
+				session.setAttribute("RESPONSE_OBJECT", resp);
 				session.setAttribute("lastReq", service.getLastRequest());
 				session.setAttribute("lastResp", service.getLastResponse());
 				if (resp.getResponseEnvelope().getAck().toString()
