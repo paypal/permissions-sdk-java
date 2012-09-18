@@ -60,7 +60,7 @@ public class PermissionsService extends BaseService{
 	 */
 	 public RequestPermissionsResponse requestPermissions(RequestPermissionsRequest requestPermissionsRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
 	 	String response = call("RequestPermissions", requestPermissionsRequest.toNVPString(), apiUsername);
-		return new RequestPermissionsResponse(NVPUtil.decode(response), "");
+		return RequestPermissionsResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
 	 
 	/** 
@@ -95,7 +95,7 @@ public class PermissionsService extends BaseService{
 	 */
 	 public GetAccessTokenResponse getAccessToken(GetAccessTokenRequest getAccessTokenRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
 	 	String response = call("GetAccessToken", getAccessTokenRequest.toNVPString(), apiUsername);
-		return new GetAccessTokenResponse(NVPUtil.decode(response), "");
+		return GetAccessTokenResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
 	 
 	/** 
@@ -130,7 +130,7 @@ public class PermissionsService extends BaseService{
 	 */
 	 public GetPermissionsResponse getPermissions(GetPermissionsRequest getPermissionsRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
 	 	String response = call("GetPermissions", getPermissionsRequest.toNVPString(), apiUsername);
-		return new GetPermissionsResponse(NVPUtil.decode(response), "");
+		return GetPermissionsResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
 	 
 	/** 
@@ -165,7 +165,7 @@ public class PermissionsService extends BaseService{
 	 */
 	 public CancelPermissionsResponse cancelPermissions(CancelPermissionsRequest cancelPermissionsRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
 	 	String response = call("CancelPermissions", cancelPermissionsRequest.toNVPString(), apiUsername);
-		return new CancelPermissionsResponse(NVPUtil.decode(response), "");
+		return CancelPermissionsResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
 	 
 	/** 
@@ -200,7 +200,7 @@ public class PermissionsService extends BaseService{
 	 */
 	 public GetBasicPersonalDataResponse getBasicPersonalData(GetBasicPersonalDataRequest getBasicPersonalDataRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
 	 	String response = call("GetBasicPersonalData", getBasicPersonalDataRequest.toNVPString(), apiUsername);
-		return new GetBasicPersonalDataResponse(NVPUtil.decode(response), "");
+		return GetBasicPersonalDataResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
 	 
 	/** 
@@ -235,7 +235,7 @@ public class PermissionsService extends BaseService{
 	 */
 	 public GetAdvancedPersonalDataResponse getAdvancedPersonalData(GetAdvancedPersonalDataRequest getAdvancedPersonalDataRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
 	 	String response = call("GetAdvancedPersonalData", getAdvancedPersonalDataRequest.toNVPString(), apiUsername);
-		return new GetAdvancedPersonalDataResponse(NVPUtil.decode(response), "");
+		return GetAdvancedPersonalDataResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
 	 
 	/** 

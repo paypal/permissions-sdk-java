@@ -40,18 +40,32 @@ public class PersonalDataList{
 	 
 
 
-	public PersonalDataList(Map<String, String> map, String prefix) {
+	
+	public static PersonalDataList createInstance(Map<String, String> map, String prefix, int index) {
+		PersonalDataList personalDataList = null;
 		int i = 0;
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
+		}
+			
 		i = 0;
 		while(true) {
-			if(map.containsKey(prefix + "personalData" + "(" + i + ")" + ".personalDataValue")){
-				String newPrefix = prefix + "personalData" + "(" + i + ")" + ".";
-				this.personalData.add(new PersonalData(map, newPrefix));
+			PersonalData personalData =  PersonalData.createInstance(map, prefix + "personalData", i);
+			if (personalData != null) {
+				personalDataList = (personalDataList == null) ? new PersonalDataList() : personalDataList;
+				personalDataList.getPersonalData().add(personalData);
+				i++;
 			} else {
 				break;
 			}
-			i++;
 		}
+		return personalDataList;
 	}
-
+ 
 }

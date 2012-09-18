@@ -65,8 +65,10 @@ public class RequestPermissionsServlet extends HttpServlet {
 		RequestEnvelope env = new RequestEnvelope("en_US");
 		List<String> scope = new ArrayList<String>();
 		String check[] = request.getParameterValues("api");
-		for (int i = 0; i < check.length; i++) {
-			scope.add(check[i]);
+		if (check != null) {
+			for (int i = 0; i < check.length; i++) {
+				scope.add(check[i]);
+			}
 		}
 		response.setContentType("text/html");
 
@@ -82,6 +84,7 @@ public class RequestPermissionsServlet extends HttpServlet {
 			RequestPermissionsResponse resp = service
 					.requestPermissions(permRequest);
 			if (resp != null) {
+				session.setAttribute("RESPONSE_OBJECT", resp);
 				session.setAttribute("lastReq", service.getLastRequest());
 				session.setAttribute("lastResp", service.getLastResponse());
 				if (resp.getResponseEnvelope().getAck().toString()
@@ -92,8 +95,7 @@ public class RequestPermissionsServlet extends HttpServlet {
 					map.put("Redirect URL",
 							"<a href=https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_grant-permission&request_token="
 									+ resp.getToken()
-									+ ">https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_grant-permission&request_token="
-									+ resp.getToken() + "</a>");
+									+ ">Redirect To PayPal</a>");
 					session.setAttribute("map", map);
 					response.sendRedirect("Response.jsp");
 				} else {

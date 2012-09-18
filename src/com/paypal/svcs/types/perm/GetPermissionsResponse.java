@@ -80,31 +80,47 @@ public class GetPermissionsResponse{
 	 
 
 
-	public GetPermissionsResponse(Map<String, String> map, String prefix) {
+	
+	public static GetPermissionsResponse createInstance(Map<String, String> map, String prefix, int index) {
+		GetPermissionsResponse getPermissionsResponse = null;
 		int i = 0;
-		if(map.containsKey(prefix + "responseEnvelope" + ".timestamp")){
-			String newPrefix = prefix + "responseEnvelope" + ".";
-			this.responseEnvelope =  new ResponseEnvelope(map, newPrefix);
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
+		}
+			
+		ResponseEnvelope responseEnvelope =  ResponseEnvelope.createInstance(map, prefix + "responseEnvelope", -1);
+		if (responseEnvelope != null) {
+			getPermissionsResponse = (getPermissionsResponse == null) ? new GetPermissionsResponse() : getPermissionsResponse;
+			getPermissionsResponse.setResponseEnvelope(responseEnvelope);
 		}
 		i = 0;
 		while(true) {
-			if(map.containsKey(prefix + "scope" + "(" + i + ")")){
-			this.scope.add(map.get(prefix + "scope" + "(" + i + ")"));
+			if (map.containsKey(prefix + "scope" + "(" + i + ")")) {
+				getPermissionsResponse = (getPermissionsResponse == null) ? new GetPermissionsResponse() : getPermissionsResponse;
+				getPermissionsResponse.getScope().add(map.get(prefix + "scope" + "(" + i + ")"));
+				i++;
 			} else {
 				break;
 			}
-			i++;
 		}
 		i = 0;
 		while(true) {
-			if(map.containsKey(prefix + "error" + "(" + i + ")" + ".errorId")){
-				String newPrefix = prefix + "error" + "(" + i + ")" + ".";
-				this.error.add(new ErrorData(map, newPrefix));
+			ErrorData error =  ErrorData.createInstance(map, prefix + "error", i);
+			if (error != null) {
+				getPermissionsResponse = (getPermissionsResponse == null) ? new GetPermissionsResponse() : getPermissionsResponse;
+				getPermissionsResponse.getError().add(error);
+				i++;
 			} else {
 				break;
 			}
-			i++;
 		}
+		return getPermissionsResponse;
 	}
-
+ 
 }

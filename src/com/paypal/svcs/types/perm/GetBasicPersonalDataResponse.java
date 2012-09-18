@@ -80,26 +80,42 @@ public class GetBasicPersonalDataResponse{
 	 
 
 
-	public GetBasicPersonalDataResponse(Map<String, String> map, String prefix) {
+	
+	public static GetBasicPersonalDataResponse createInstance(Map<String, String> map, String prefix, int index) {
+		GetBasicPersonalDataResponse getBasicPersonalDataResponse = null;
 		int i = 0;
-		if(map.containsKey(prefix + "responseEnvelope" + ".timestamp")){
-			String newPrefix = prefix + "responseEnvelope" + ".";
-			this.responseEnvelope =  new ResponseEnvelope(map, newPrefix);
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
 		}
-		if(map.containsKey(prefix + "response" + ".personalData(0).personalDataValue")){
-			String newPrefix = prefix + "response" + ".";
-			this.response =  new PersonalDataList(map, newPrefix);
+			
+		ResponseEnvelope responseEnvelope =  ResponseEnvelope.createInstance(map, prefix + "responseEnvelope", -1);
+		if (responseEnvelope != null) {
+			getBasicPersonalDataResponse = (getBasicPersonalDataResponse == null) ? new GetBasicPersonalDataResponse() : getBasicPersonalDataResponse;
+			getBasicPersonalDataResponse.setResponseEnvelope(responseEnvelope);
+		}
+		PersonalDataList response =  PersonalDataList.createInstance(map, prefix + "response", -1);
+		if (response != null) {
+			getBasicPersonalDataResponse = (getBasicPersonalDataResponse == null) ? new GetBasicPersonalDataResponse() : getBasicPersonalDataResponse;
+			getBasicPersonalDataResponse.setResponse(response);
 		}
 		i = 0;
 		while(true) {
-			if(map.containsKey(prefix + "error" + "(" + i + ")" + ".errorId")){
-				String newPrefix = prefix + "error" + "(" + i + ")" + ".";
-				this.error.add(new ErrorData(map, newPrefix));
+			ErrorData error =  ErrorData.createInstance(map, prefix + "error", i);
+			if (error != null) {
+				getBasicPersonalDataResponse = (getBasicPersonalDataResponse == null) ? new GetBasicPersonalDataResponse() : getBasicPersonalDataResponse;
+				getBasicPersonalDataResponse.getError().add(error);
+				i++;
 			} else {
 				break;
 			}
-			i++;
 		}
+		return getBasicPersonalDataResponse;
 	}
-
+ 
 }
