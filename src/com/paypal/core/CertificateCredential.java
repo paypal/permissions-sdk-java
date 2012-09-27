@@ -37,7 +37,7 @@ public class CertificateCredential extends ICredential {
 		if (getPassword() == null || getPassword().length() == 0) {
 			throw new MissingCredentialException("password can't be empty");
 		}
-		if (getApplicationId() == null || getApplicationId() == "") {
+		if (getApplicationId() == null || getApplicationId().length() == 0) {
 			throw new MissingCredentialException("applicationId can't be empty");
 		}
 	}
