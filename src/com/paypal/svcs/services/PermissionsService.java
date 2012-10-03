@@ -27,17 +27,17 @@ public class PermissionsService extends BaseService{
 	public static final String SERVICE_NAME = "Permissions";
 
 	
-	public PermissionsService(File configFile) throws IOException, FileNotFoundException {
+	public PermissionsService(File configFile) throws IOException {
 		super(SERVICE_NAME, SERVICE_VERSION);
 		initConfig(configFile);
 	}		
 
-	public PermissionsService(InputStream config) throws IOException, FileNotFoundException {
+	public PermissionsService(InputStream config) throws IOException {
 		super(SERVICE_NAME, SERVICE_VERSION);
 		initConfig(config);
 	}
 
-	public PermissionsService(String configFilePath) throws IOException, FileNotFoundException {
+	public PermissionsService(String configFilePath) throws IOException {
 		super(SERVICE_NAME, SERVICE_VERSION);
 		initConfig(configFilePath);
 	}

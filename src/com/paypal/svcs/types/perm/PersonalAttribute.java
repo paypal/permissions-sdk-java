@@ -46,9 +46,11 @@ public enum  PersonalAttribute {
 	}
 	
 	public static PersonalAttribute fromValue(String v) {
-		for (PersonalAttribute c : values())
-			if (c.value.equals(v))
+		for (PersonalAttribute c : values()) {
+			if (c.value.equals(v)) {
 				return c;
+			}
+		}
 		throw new IllegalArgumentException(v);
 	}
 
