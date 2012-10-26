@@ -65,8 +65,7 @@ public class CancelPermissionsServlet extends HttpServlet {
 		req.setRequestEnvelope(requestEnvelope);
 		req.setToken(request.getParameter("token"));
 		PermissionsService service = new PermissionsService(this
-				.getServletContext().getRealPath("/")
-				+ "/WEB-INF/sdk_config.properties");
+				.getClass().getResourceAsStream("/sdk_config.properties"));
 		try {
 			CancelPermissionsResponse resp = service.cancelPermissions(req);
 			response.setContentType("text/html");

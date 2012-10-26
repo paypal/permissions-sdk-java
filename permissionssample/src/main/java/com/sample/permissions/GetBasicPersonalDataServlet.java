@@ -79,8 +79,7 @@ public class GetBasicPersonalDataServlet extends HttpServlet {
 		req.setAttributeList(attribute);
 
 		PermissionsService service = new PermissionsService(this
-				.getServletContext().getRealPath("/")
-				+ "/WEB-INF/sdk_config.properties");
+				.getClass().getResourceAsStream("/sdk_config.properties"));
 		try {
 			service.setAccessToken(request.getParameter("accessToken"));
 			service.setTokenSecret(request.getParameter("tokenSecret"));
