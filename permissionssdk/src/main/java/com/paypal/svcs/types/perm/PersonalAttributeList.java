@@ -10,6 +10,8 @@ import com.paypal.core.NVPUtil;
  */
 public class PersonalAttributeList{
 
+	private static final String nameSpace="com.paypal.svcs.types.perm";
+	private static final String preferredPrefix="";
 
 	/**
 	 * 	 

@@ -8,6 +8,8 @@ import com.paypal.core.NVPUtil;
  */
 public class RequestEnvelope{
 
+	private static final String nameSpace="com.paypal.svcs.types.common";
+	private static final String preferredPrefix="";
 
 	/**
 	 * This should be the standard RFC 3066 language identification
