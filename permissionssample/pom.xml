@@ -2,20 +2,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.paypal.sdk</groupId>
   <artifactId>permissionssample</artifactId>
-  <version>1.2.95-SNAPSHOT</version>
+  <version>1.2.95</version>
   <name>PermissionsSample</name>
-  <parent>
-  	<groupId>com.paypal.sdk</groupId>
-  	<artifactId>permissions</artifactId>
-  	<version>1.2.95-SNAPSHOT</version>
-  	<relativePath>../pom.xml</relativePath>
-  </parent>
   <packaging>war</packaging>
   <dependencies>
   	<dependency>
   		<groupId>com.paypal.sdk</groupId>
   		<artifactId>permissionssdk</artifactId>
-  		<version>1.2.95-SNAPSHOT</version>
+  		<version>1.2.95</version>
   	</dependency>
   	<dependency>
   		<groupId>javax.servlet</groupId>
