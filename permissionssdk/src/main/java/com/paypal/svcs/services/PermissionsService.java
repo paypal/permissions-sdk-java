@@ -30,10 +30,10 @@ public class PermissionsService extends BaseService{
 	public static final String SERVICE_NAME = "Permissions";
 
 	//SDK Name
-	private static final String SDK_NAME="sdkname";
+	private static final String SDK_NAME="permissions-java-sdk";
 	
 	//SDK Version
-	private static final String SDK_VERSION="sdkversion";
+	private static final String SDK_VERSION="2.0.96";
 
 	
 	public PermissionsService(File configFile) throws IOException {

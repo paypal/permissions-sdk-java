@@ -12,8 +12,6 @@ import com.paypal.core.NVPUtil;
  */
 public class RequestPermissionsRequest{
 
-	private static final String nameSpace="com.paypal.svcs.types.perm";
-	private static final String preferredPrefix="";
 
 	/**
 	 * 	 
