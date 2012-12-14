@@ -46,9 +46,9 @@ public class PersonalAttributeList{
 	
 	public String toNVPString(String prefix) throws UnsupportedEncodingException {
 		StringBuilder sb = new StringBuilder();
-		if (attribute != null) {
-			for(int i=0; i < attribute.size(); i++) {
-				sb.append(prefix).append("attribute(").append(i).append(")=").append(attribute.get(i).getValue());
+		if (this.attribute != null) {
+			for(int i=0; i < this.attribute.size(); i++) {
+				sb.append(prefix).append("attribute(").append(i).append(")=").append(this.attribute.get(i).getValue());
 				sb.append("&");
 			}
 		}

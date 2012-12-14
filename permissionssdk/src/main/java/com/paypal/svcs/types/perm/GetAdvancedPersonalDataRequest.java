@@ -75,13 +75,13 @@ public class GetAdvancedPersonalDataRequest{
 	
 	public String toNVPString(String prefix) throws UnsupportedEncodingException {
 		StringBuilder sb = new StringBuilder();
-		if (requestEnvelope != null) {
+		if (this.requestEnvelope != null) {
 			String newPrefix = prefix + "requestEnvelope.";
-			sb.append(requestEnvelope.toNVPString(newPrefix));
+			sb.append(this.requestEnvelope.toNVPString(newPrefix));
 		}
-		if (attributeList != null) {
+		if (this.attributeList != null) {
 			String newPrefix = prefix + "attributeList.";
-			sb.append(attributeList.toNVPString(newPrefix));
+			sb.append(this.attributeList.toNVPString(newPrefix));
 		}
 		return sb.toString();
 	}

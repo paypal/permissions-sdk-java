@@ -98,18 +98,18 @@ public class RequestPermissionsRequest{
 	
 	public String toNVPString(String prefix) throws UnsupportedEncodingException {
 		StringBuilder sb = new StringBuilder();
-		if (requestEnvelope != null) {
+		if (this.requestEnvelope != null) {
 			String newPrefix = prefix + "requestEnvelope.";
-			sb.append(requestEnvelope.toNVPString(newPrefix));
+			sb.append(this.requestEnvelope.toNVPString(newPrefix));
 		}
-		if (scope != null) {
-			for(int i=0; i < scope.size(); i++) {
-				sb.append(prefix).append("scope(").append(i).append(")=").append(NVPUtil.encodeUrl(scope.get(i)));
+		if (this.scope != null) {
+			for(int i=0; i < this.scope.size(); i++) {
+				sb.append(prefix).append("scope(").append(i).append(")=").append(NVPUtil.encodeUrl(this.scope.get(i)));
 				sb.append("&");
 			}
 		}
-		if (callback != null) {
-			sb.append(prefix).append("callback=").append(NVPUtil.encodeUrl(callback));
+		if (this.callback != null) {
+			sb.append(prefix).append("callback=").append(NVPUtil.encodeUrl(this.callback));
 			sb.append("&");
 		}
 		return sb.toString();

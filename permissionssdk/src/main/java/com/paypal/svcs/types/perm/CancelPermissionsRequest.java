@@ -72,12 +72,12 @@ public class CancelPermissionsRequest{
 	
 	public String toNVPString(String prefix) throws UnsupportedEncodingException {
 		StringBuilder sb = new StringBuilder();
-		if (requestEnvelope != null) {
+		if (this.requestEnvelope != null) {
 			String newPrefix = prefix + "requestEnvelope.";
-			sb.append(requestEnvelope.toNVPString(newPrefix));
+			sb.append(this.requestEnvelope.toNVPString(newPrefix));
 		}
-		if (token != null) {
-			sb.append(prefix).append("token=").append(NVPUtil.encodeUrl(token));
+		if (this.token != null) {
+			sb.append(prefix).append("token=").append(NVPUtil.encodeUrl(this.token));
 			sb.append("&");
 		}
 		return sb.toString();
