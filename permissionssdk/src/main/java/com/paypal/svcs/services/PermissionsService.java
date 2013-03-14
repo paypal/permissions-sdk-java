@@ -1,5 +1,6 @@
 package com.paypal.svcs.services;
 import java.io.*;
+import java.util.Map;
 import java.util.Properties;
 import com.paypal.core.BaseService;
 import com.paypal.exception.*;
@@ -31,54 +32,102 @@ public class PermissionsService extends BaseService {
 	public static final String SERVICE_NAME = "Permissions";
 
 	//SDK Name
-	private static final String SDK_NAME="permissions-java-sdk";
+	private static final String SDK_NAME = "sdkname";
 	
 	//SDK Version
-	private static final String SDK_VERSION="2.1.96";
+	private static final String SDK_VERSION = "sdkversion";
 
+
+	/**
+	 * Default <code>PermissionsService</code> Constructor.
+	 * Initializes the SDK system with the default configuration file named
+	 * 'sdk_config.properties' found in the class-path
+	 * 
+	 */
+	public PermissionsService() {
+		super();
+	}
 	
+	/**
+	 * <code>PermissionsService</code> that uses the supplied path
+	 * to initialize the SDK system. The initialization context is maintained
+	 * only for this instance of the class. To initialize the SDK system
+	 * globally use the default constructor.
+	 * 
+	 * @see PayPalAPIInterfaceServiceService
+	 * @param configFilePath
+	 *            Absolute path to a {@link Properties} file
+	 * @throws IOException
+	 */
+	public PermissionsService(String configFilePath) throws IOException {
+		this(new File(configFilePath));
+	}
+	
+	/**
+	 * <code>PermissionsService</code> that uses the supplied
+	 * {@link File} object to initialize the SDK system. The initialization
+	 * context is maintained only for this instance of the class. To initialize
+	 * the SDK system globally use the default constructor
+	 * 
+	 * @see PayPalAPIInterfaceServiceService
+	 * @param configFile
+	 *            Configuration file in {@link Properties} format
+	 * @throws IOException
+	 */
 	public PermissionsService(File configFile) throws IOException {
-		initConfig(configFile);
+		this(new FileInputStream(configFile));
 	}		
 
-	public PermissionsService(InputStream config) throws IOException {
-		initConfig(config);
+	/**
+	 * <code>PermissionsService</code> that uses the supplied
+	 * {@link InputStream} object to initialize the SDK system. The
+	 * initialization context is maintained only for this instance of the class.
+	 * To initialize the SDK system globally use the default constructor.
+	 * 
+	 * @see PayPalAPIInterfaceServiceService
+	 * @param inputStream
+	 *            InputStream of a {@link Properties} file
+	 * @throws IOException
+	 */
+	public PermissionsService(InputStream inputStream) throws IOException {
+		super(inputStream);
 	}
 
-	public PermissionsService(String configFilePath) throws IOException {
-		initConfig(configFilePath);
+	/**
+	 * <code>PermissionsService</code> that uses the supplied
+	 * {@link Properties} to initialize the SDK system. For values that the
+	 * properties should hold consult the sample 'sdk_config.properties' file
+	 * bundled with the SDK. The initialization context is maintained only for
+	 * this instance of the class. To initialize the SDK system globally use the
+	 * default constructor.
+	 * 
+	 * @see PayPalAPIInterfaceServiceService
+	 * @param properties
+	 *            {@link Properties} object
+	 */	
+	public PermissionsService(Properties properties) {
+		super(properties);
 	}
 	
-	public PermissionsService(Properties properties) {
-		initConfig(properties);
+	/**
+	 * <code>PayPalAPIInterfaceServiceService</code> that uses the supplied
+	 * {@link Map} to initialize the SDK system. For values that the map should
+	 * hold consult the sample 'sdk_config.properties' file bundled with the
+	 * SDK. The initialization context is maintained only for this instance of
+	 * the class. To initialize the SDK system globally use the default
+	 * constructor.
+	 * 
+	 * @see PayPalAPIInterfaceServiceService
+	 * @param configurationMap
+	 *            {@link Map} object
+	 */
+	public PermissionsService(Map<String, String> configurationMap) {
+		super(configurationMap);
 	}
 
 
 
-	/**	
-	 * AUTO_GENERATED
-	 * @throws SSLConfigurationException
-	 * @throws InvalidCredentialException
-	 * @throws UnsupportedEncodingException
-	 * @throws IOException
-	 * @throws HttpErrorException
-	 * @throws InvalidResponseDataException
-	 * @throws ClientActionRequiredException
-	 * @throws MissingCredentialException
-	 * @throws InterruptedException
-	 * @throws OAuthException
-	 */
-	 public RequestPermissionsResponse requestPermissions(RequestPermissionsRequest requestPermissionsRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Permissions";
-		apiCallPreHandler = new PlatformAPICallPreHandler(requestPermissionsRequest.toNVPString(), SERVICE_NAME, "RequestPermissions", apiUsername, getAccessToken(), getTokenSecret());
-	    ((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
-	 	String response = call(apiCallPreHandler);
-		return RequestPermissionsResponse.createInstance(NVPUtil.decode(response), "", -1);
-	 }
-	 
+
 	/** 
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -110,15 +159,11 @@ public class PermissionsService extends BaseService {
 	 * @throws OAuthException
 	 */
 	 public RequestPermissionsResponse requestPermissions(RequestPermissionsRequest requestPermissionsRequest, ICredential credential) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Permissions";
-		apiCallPreHandler = new PlatformAPICallPreHandler(requestPermissionsRequest.toNVPString(), SERVICE_NAME, "RequestPermissions", credential);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(requestPermissionsRequest.toNVPString(), SERVICE_NAME, "RequestPermissions", credential, SDK_NAME, SDK_VERSION, "Permissions", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
 		return RequestPermissionsResponse.createInstance(NVPUtil.decode(response), "", -1);
 	}
+	
 	/**	
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -132,17 +177,12 @@ public class PermissionsService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	 public GetAccessTokenResponse getAccessToken(GetAccessTokenRequest getAccessTokenRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Permissions";
-		apiCallPreHandler = new PlatformAPICallPreHandler(getAccessTokenRequest.toNVPString(), SERVICE_NAME, "GetAccessToken", apiUsername, getAccessToken(), getTokenSecret());
-	    ((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+	 public RequestPermissionsResponse requestPermissions(RequestPermissionsRequest requestPermissionsRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(requestPermissionsRequest.toNVPString(), SERVICE_NAME, "RequestPermissions", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Permissions", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
-		return GetAccessTokenResponse.createInstance(NVPUtil.decode(response), "", -1);
+		return RequestPermissionsResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
-	 
+
 	/** 
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -174,15 +214,11 @@ public class PermissionsService extends BaseService {
 	 * @throws OAuthException
 	 */
 	 public GetAccessTokenResponse getAccessToken(GetAccessTokenRequest getAccessTokenRequest, ICredential credential) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Permissions";
-		apiCallPreHandler = new PlatformAPICallPreHandler(getAccessTokenRequest.toNVPString(), SERVICE_NAME, "GetAccessToken", credential);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(getAccessTokenRequest.toNVPString(), SERVICE_NAME, "GetAccessToken", credential, SDK_NAME, SDK_VERSION, "Permissions", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
 		return GetAccessTokenResponse.createInstance(NVPUtil.decode(response), "", -1);
 	}
+	
 	/**	
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -196,17 +232,12 @@ public class PermissionsService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	 public GetPermissionsResponse getPermissions(GetPermissionsRequest getPermissionsRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Permissions";
-		apiCallPreHandler = new PlatformAPICallPreHandler(getPermissionsRequest.toNVPString(), SERVICE_NAME, "GetPermissions", apiUsername, getAccessToken(), getTokenSecret());
-	    ((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+	 public GetAccessTokenResponse getAccessToken(GetAccessTokenRequest getAccessTokenRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(getAccessTokenRequest.toNVPString(), SERVICE_NAME, "GetAccessToken", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Permissions", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
-		return GetPermissionsResponse.createInstance(NVPUtil.decode(response), "", -1);
+		return GetAccessTokenResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
-	 
+
 	/** 
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -238,15 +269,11 @@ public class PermissionsService extends BaseService {
 	 * @throws OAuthException
 	 */
 	 public GetPermissionsResponse getPermissions(GetPermissionsRequest getPermissionsRequest, ICredential credential) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Permissions";
-		apiCallPreHandler = new PlatformAPICallPreHandler(getPermissionsRequest.toNVPString(), SERVICE_NAME, "GetPermissions", credential);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(getPermissionsRequest.toNVPString(), SERVICE_NAME, "GetPermissions", credential, SDK_NAME, SDK_VERSION, "Permissions", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
 		return GetPermissionsResponse.createInstance(NVPUtil.decode(response), "", -1);
 	}
+	
 	/**	
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -260,17 +287,12 @@ public class PermissionsService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	 public CancelPermissionsResponse cancelPermissions(CancelPermissionsRequest cancelPermissionsRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Permissions";
-		apiCallPreHandler = new PlatformAPICallPreHandler(cancelPermissionsRequest.toNVPString(), SERVICE_NAME, "CancelPermissions", apiUsername, getAccessToken(), getTokenSecret());
-	    ((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+	 public GetPermissionsResponse getPermissions(GetPermissionsRequest getPermissionsRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(getPermissionsRequest.toNVPString(), SERVICE_NAME, "GetPermissions", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Permissions", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
-		return CancelPermissionsResponse.createInstance(NVPUtil.decode(response), "", -1);
+		return GetPermissionsResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
-	 
+
 	/** 
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -302,15 +324,11 @@ public class PermissionsService extends BaseService {
 	 * @throws OAuthException
 	 */
 	 public CancelPermissionsResponse cancelPermissions(CancelPermissionsRequest cancelPermissionsRequest, ICredential credential) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Permissions";
-		apiCallPreHandler = new PlatformAPICallPreHandler(cancelPermissionsRequest.toNVPString(), SERVICE_NAME, "CancelPermissions", credential);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(cancelPermissionsRequest.toNVPString(), SERVICE_NAME, "CancelPermissions", credential, SDK_NAME, SDK_VERSION, "Permissions", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
 		return CancelPermissionsResponse.createInstance(NVPUtil.decode(response), "", -1);
 	}
+	
 	/**	
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -324,17 +342,12 @@ public class PermissionsService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	 public GetBasicPersonalDataResponse getBasicPersonalData(GetBasicPersonalDataRequest getBasicPersonalDataRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Permissions";
-		apiCallPreHandler = new PlatformAPICallPreHandler(getBasicPersonalDataRequest.toNVPString(), SERVICE_NAME, "GetBasicPersonalData", apiUsername, getAccessToken(), getTokenSecret());
-	    ((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+	 public CancelPermissionsResponse cancelPermissions(CancelPermissionsRequest cancelPermissionsRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(cancelPermissionsRequest.toNVPString(), SERVICE_NAME, "CancelPermissions", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Permissions", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
-		return GetBasicPersonalDataResponse.createInstance(NVPUtil.decode(response), "", -1);
+		return CancelPermissionsResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
-	 
+
 	/** 
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -366,15 +379,11 @@ public class PermissionsService extends BaseService {
 	 * @throws OAuthException
 	 */
 	 public GetBasicPersonalDataResponse getBasicPersonalData(GetBasicPersonalDataRequest getBasicPersonalDataRequest, ICredential credential) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Permissions";
-		apiCallPreHandler = new PlatformAPICallPreHandler(getBasicPersonalDataRequest.toNVPString(), SERVICE_NAME, "GetBasicPersonalData", credential);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(getBasicPersonalDataRequest.toNVPString(), SERVICE_NAME, "GetBasicPersonalData", credential, SDK_NAME, SDK_VERSION, "Permissions", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
 		return GetBasicPersonalDataResponse.createInstance(NVPUtil.decode(response), "", -1);
 	}
+	
 	/**	
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -388,17 +397,12 @@ public class PermissionsService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	 public GetAdvancedPersonalDataResponse getAdvancedPersonalData(GetAdvancedPersonalDataRequest getAdvancedPersonalDataRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Permissions";
-		apiCallPreHandler = new PlatformAPICallPreHandler(getAdvancedPersonalDataRequest.toNVPString(), SERVICE_NAME, "GetAdvancedPersonalData", apiUsername, getAccessToken(), getTokenSecret());
-	    ((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+	 public GetBasicPersonalDataResponse getBasicPersonalData(GetBasicPersonalDataRequest getBasicPersonalDataRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(getBasicPersonalDataRequest.toNVPString(), SERVICE_NAME, "GetBasicPersonalData", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Permissions", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
-		return GetAdvancedPersonalDataResponse.createInstance(NVPUtil.decode(response), "", -1);
+		return GetBasicPersonalDataResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
-	 
+
 	/** 
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -430,14 +434,28 @@ public class PermissionsService extends BaseService {
 	 * @throws OAuthException
 	 */
 	 public GetAdvancedPersonalDataResponse getAdvancedPersonalData(GetAdvancedPersonalDataRequest getAdvancedPersonalDataRequest, ICredential credential) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Permissions";
-		apiCallPreHandler = new PlatformAPICallPreHandler(getAdvancedPersonalDataRequest.toNVPString(), SERVICE_NAME, "GetAdvancedPersonalData", credential);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(getAdvancedPersonalDataRequest.toNVPString(), SERVICE_NAME, "GetAdvancedPersonalData", credential, SDK_NAME, SDK_VERSION, "Permissions", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
 		return GetAdvancedPersonalDataResponse.createInstance(NVPUtil.decode(response), "", -1);
 	}
+	
+	/**	
+	 * AUTO_GENERATED
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public GetAdvancedPersonalDataResponse getAdvancedPersonalData(GetAdvancedPersonalDataRequest getAdvancedPersonalDataRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(getAdvancedPersonalDataRequest.toNVPString(), SERVICE_NAME, "GetAdvancedPersonalData", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Permissions", this.configurationMap);
+	 	String response = call(apiCallPreHandler);
+		return GetAdvancedPersonalDataResponse.createInstance(NVPUtil.decode(response), "", -1);
+	 }
 
 }
