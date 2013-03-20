@@ -17,11 +17,13 @@ SDK Integration:
 
 *	Add dependency to sdk in your application's pom.xml as below.
 		
-		<dependency>
+		```xml
+        <dependency>
 			<groupId>com.paypal.sdk</groupId>
 			<artifactId>permissionssdk</artifactId>
 			<version>2.1.96</version>
 		</dependency>
+        ```
 		
 To make an API call:
 --------------------			
@@ -29,15 +31,19 @@ To make an API call:
 		
 *	Copy the configuration file 'sdk_config.properties' in 'permissionssample/src/main/resources' folder to your application 'src/main/resources'. And load it using,  
 		  
-		new PermissionsService(this.getClass().getResourceAsStream("/sdk_config.properties"));
+    ```java
+    new PermissionsService(this.getClass().getResourceAsStream("/sdk_config.properties"));
+    ```
 	
 *	Or load the configuration file from any location using absolute path with the below method calls as required.
 
-          new PermissionsService(new File(" .../sdk_config.properties"));
-                                 Or
-		  new PermissionsService(new InputStream(new File(" .../sdk_config.properties")));
-                                 Or
-          new PermissionsService(" .../sdk_config.properties");
+    ```java
+    new PermissionsService(new File(" .../sdk_config.properties"));
+                     Or
+    new PermissionsService(new InputStream(new File(" .../sdk_config.properties")));
+                     Or
+    new PermissionsService(" .../sdk_config.properties");
+    ```
   
 *	Create a service wrapper object.
 
@@ -45,33 +51,33 @@ To make an API call:
 
 *	Invoke the appropriate method on the service wrapper object.
 
-For example,
+    For example,
+    
+    ```java
+    import com.paypal.svcs.services.PermissionsService;
+    import com.paypal.svcs.types.common.RequestEnvelope;
+    import com.paypal.svcs.types.perm.*;
+    ...
 
-          
-	  import com.paypal.svcs.services.PermissionsService;
-	  import com.paypal.svcs.types.common.RequestEnvelope;
-	  import com.paypal.svcs.types.perm.RequestPermissionsRequest;
-      import com.paypal.svcs.types.perm.RequestPermissionsResponse;
-	  ...
-	  
-          
-          
-          RequestEnvelope env = new RequestEnvelope();
-	      env.setErrorLanguage("en_US");
-          ...
-          
-		  List<String> scope = new ArrayList<String>();
-		  String value="INVOICING";
-		  scope.add(value);
-          ...
-                    
-	      RequestPermissionsRequest requestPermissionsRequest = new RequestPermissionsRequest(scope, callback);
-		  requestPermissionsRequest.setRequestEnvelope(env);
-          ...
+    RequestEnvelope env = new RequestEnvelope();
+    env.setErrorLanguage("en_US");
+    ...
 
-          //userName is optional
-          PermissionsService permissionsService = new PermissionsService(this.getClass().getResourceAsStream("/sdk_config.properties"));
-	      RequestPermissionsResponse requestPermissionsResponse = permissionsService.requestPermissions(requestPermissionsRequest,userName);
+    List<String> scope = new ArrayList<String>();
+    String value="INVOICING";
+    scope.add(value);
+    ...
+            
+    RequestPermissionsRequest requestPermissionsRequest = new RequestPermissionsRequest(scope, callback);
+    requestPermissionsRequest.setRequestEnvelope(env);
+    ...
+
+    //userName is optional
+    PermissionsService permissionsService = new PermissionsService(
+                                            this.getClass().getResourceAsStream("/sdk_config.properties"));
+    RequestPermissionsResponse requestPermissionsResponse = permissionsService.requestPermissions(
+                                                                    requestPermissionsRequest,userName);
+    ```
 		  
 
 SDK Logging:
