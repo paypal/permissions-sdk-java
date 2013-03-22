@@ -16,39 +16,36 @@ SDK Integration:
 *	Create a new maven application.
 
 *	Add dependency to sdk in your application's pom.xml as below.
-		
-		```
-        <dependency>
-			<groupId>com.paypal.sdk</groupId>
-			<artifactId>permissionssdk</artifactId>
-			<version>2.1.96</version>
-		</dependency>
-        ```
-		
+
+    ```xml
+    <dependency>
+        <groupId>com.paypal.sdk</groupId>
+        <artifactId>permissionssdk</artifactId>
+        <version>2.1.96</version>
+    </dependency>
+    ```
+
 To make an API call:
 --------------------			
 *	Import PermissionsService.java into your code.
 		
-*	Copy the configuration file 'sdk_config.properties' in 'permissionssample/src/main/resources' folder to your application 'src/main/resources'. Use the default constructor to run in default configuration.
-		  
-    ```java
-    new PermissionsService();
-    ```
-	
+*	Copy the configuration file 'sdk_config.properties' in 'permissionssample/src/main/resources' folder to your application 'src/main/resources'. Use the default constructor to run in default configuration(configuration used from sdk_config.properties found in classpath).
+	```java
+	new PermissionsService();
+	```
 *	For Dynamic configuration(configuration is valid for the lifetime of the service object)
-
-    ```java
-    new PermissionsService(new File("/pathto/custom.properties"));
-                     Or
-    new PermissionsService(new FileInputStream(new File("/pathto/custom.properties")));
-                     Or
-    new PermissionsService("/pathto/custom.properties");
-    		     Or
-    new PermissionsService(Map<String, String> customConfigurationMap);
-    		     Or
-    new PermissionsService(Properties customProperties);
-    ```
-*	The SDK assumes defaults for certain parameters(refer sdk_config.properties for defaults). Either 'mode' or 'service.Endpoint' is a mandatory configuration. Account credentials are treated as mandatory parameters.
+	```java
+	new PermissionsService(new File("/pathto/custom.properties"));
+			Or
+	new PermissionsService(new FileInputStream(new File("/pathto/custom.properties")));
+			Or
+	new PermissionsService("/pathto/custom.properties");
+			Or
+	new PermissionsService(Map<String, String> customConfigurationMap);
+			Or
+	new PermissionsService(Properties customProperties);
+	```
+*	The SDK takes defaults for certain parameters(refer sdk_config.properties for defaults). Account Credentials and either of 'mode' or 'service.Endpoint' are mandatory parameters.
 
 *	Create a service wrapper object.
 
@@ -63,22 +60,22 @@ To make an API call:
     import com.paypal.svcs.types.common.RequestEnvelope;
     import com.paypal.svcs.types.perm.*;
     ...
-
     RequestEnvelope env = new RequestEnvelope();
     env.setErrorLanguage("en_US");
     ...
-
     List<String> scope = new ArrayList<String>();
     String value="INVOICING";
     scope.add(value);
     ...
-            
     RequestPermissionsRequest requestPermissionsRequest = new RequestPermissionsRequest(scope, callback);
     requestPermissionsRequest.setRequestEnvelope(env);
     ...
-
-    //userName is optional
     PermissionsService permissionsService = new PermissionsService();
+			Or
+    Map<String, String> customConfigurationMap = new HashMap<String, String>();
+    customConfigurationMap.put("mode", "sandbox"); // Load the map with all mandatory parameters
+    ...
+    PermissionsService permissionsService = new PermissionsService(Map<String, String> customConfigurationMap);
     RequestPermissionsResponse requestPermissionsResponse = permissionsService.requestPermissions(
                                                                     requestPermissionsRequest,userName);
     ```
@@ -103,7 +100,7 @@ The SDK uses .properties format configuration file. Sample of this file is at
 
 *	Service configuration.
 
-Multiple End-points Support
+Multiple SDK usage (Multiple End-points Support)
 ---------------------------
 Multiple end-points configuration can be done by specifying mulitple end-points identified by specific property keys. 
 When using multiple SDKs in combination, like Merchant and Permissions etc..configure the endpoints as shown below 
