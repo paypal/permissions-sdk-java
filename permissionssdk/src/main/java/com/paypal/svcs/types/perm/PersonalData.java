@@ -3,21 +3,21 @@ import com.paypal.svcs.types.perm.PersonalAttribute;
 import java.util.Map;
 
 /**
- * A property of User Identity data , represented as a
- * Name-value pair with Name being the PersonalAttribute
- * requested and value being the data. 
+ *  A property of User Identity data , represented as a
+ *  Name-value pair with Name being the PersonalAttribute
+ *  requested and value being the data. 
  */
 public class PersonalData{
 
 
 	/**
-	 * 	  
+	*  	  
 	 *@Required	 
 	 */ 
 	private PersonalAttribute personalDataKey;
 
 	/**
-	 * 	  
+	*  	  
 	 *@Required	 
 	 */ 
 	private String personalDataValue;

@@ -6,13 +6,13 @@ import java.io.UnsupportedEncodingException;
 import com.paypal.core.NVPUtil;
 
 /**
- * List of Personal Attributes to be sent as a request. 
+ *  List of Personal Attributes to be sent as a request. 
  */
 public class PersonalAttributeList{
 
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private List<PersonalAttribute> attribute = new ArrayList<PersonalAttribute>();
 

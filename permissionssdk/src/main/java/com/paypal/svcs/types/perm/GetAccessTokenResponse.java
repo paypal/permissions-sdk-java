@@ -6,39 +6,39 @@ import com.paypal.svcs.types.common.ErrorData;
 import java.util.Map;
 
 /**
- * Permanent access token and token secret that can be used to
- * make requests for protected resources owned by another
- * account. 
+ *  Permanent access token and token secret that can be used to
+ *  make requests for protected resources owned by another
+ *  account. 
  */
 public class GetAccessTokenResponse{
 
 
 	/**
-	 * 	  
+	*  	  
 	 *@Required	 
 	 */ 
 	private ResponseEnvelope responseEnvelope;
 
 	/**
-	 * Identifier for the permissions approved for this
-	 * relationship. 	 
+	*  Identifier for the permissions approved for this
+	*  relationship. 	 
 	 */ 
 	private List<String> scope = new ArrayList<String>();
 
 	/**
-	 * Permanent access token that identifies the relationship that
-	 * the user authorized. 	 
+	*  Permanent access token that identifies the relationship that
+	*  the user authorized. 	 
 	 */ 
 	private String token;
 
 	/**
-	 * The token secret/password that will need to be used when
-	 * generating the signature. 	 
+	*  The token secret/password that will need to be used when
+	*  generating the signature. 	 
 	 */ 
 	private String tokenSecret;
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private List<ErrorData> error = new ArrayList<ErrorData>();
 

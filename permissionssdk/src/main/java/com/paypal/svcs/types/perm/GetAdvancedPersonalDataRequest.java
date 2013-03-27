@@ -5,21 +5,21 @@ import java.io.UnsupportedEncodingException;
 import com.paypal.core.NVPUtil;
 
 /**
- * Request to retrieve personal data.Accepts
- * PersonalAttributeList as request and responds with
- * PersonalDataList. This call will accept both 'Basic' and
- * Advanced attributes. 
+ *  Request to retrieve personal data.Accepts
+ *  PersonalAttributeList as request and responds with
+ *  PersonalDataList. This call will accept both 'Basic' and
+ *  Advanced attributes. 
  */
 public class GetAdvancedPersonalDataRequest{
 
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private RequestEnvelope requestEnvelope;
 
 	/**
-	 * 	  
+	*  	  
 	 *@Required	 
 	 */ 
 	private PersonalAttributeList attributeList;

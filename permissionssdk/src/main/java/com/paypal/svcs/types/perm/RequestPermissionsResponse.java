@@ -6,27 +6,27 @@ import com.paypal.svcs.types.common.ErrorData;
 import java.util.Map;
 
 /**
- * Returns the temporary request token 
+ *  Returns the temporary request token 
  */
 public class RequestPermissionsResponse{
 
 
 	/**
-	 * 	  
+	*  	  
 	 *@Required	 
 	 */ 
 	private ResponseEnvelope responseEnvelope;
 
 	/**
-	 * Temporary token that identifies the request for permissions.
-	 * This token cannot be used to access resources on the
-	 * account. It can only be used to instruct the user to
-	 * authorize the permissions. 	 
+	*  Temporary token that identifies the request for permissions.
+	*  This token cannot be used to access resources on the
+	*  account. It can only be used to instruct the user to
+	*  authorize the permissions. 	 
 	 */ 
 	private String token;
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private List<ErrorData> error = new ArrayList<ErrorData>();
 

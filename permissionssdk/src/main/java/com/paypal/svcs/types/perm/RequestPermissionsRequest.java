@@ -6,28 +6,28 @@ import java.io.UnsupportedEncodingException;
 import com.paypal.core.NVPUtil;
 
 /**
- * Describes the request for permissions over an account.
- * Primary element is "scope", which lists the permissions
- * needed. 
+ *  Describes the request for permissions over an account.
+ *  Primary element is "scope", which lists the permissions
+ *  needed. 
  */
 public class RequestPermissionsRequest{
 
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private RequestEnvelope requestEnvelope;
 
 	/**
-	 * URI of the permissions being requested. 	  
+	*  URI of the permissions being requested. 	  
 	 *@Required	 
 	 */ 
 	private List<String> scope = new ArrayList<String>();
 
 	/**
-	 * URL on the client side that will be used to communicate
-	 * completion of the user flow. The URL can include query
-	 * parameters. 	  
+	*  URL on the client side that will be used to communicate
+	*  completion of the user flow. The URL can include query
+	*  parameters. 	  
 	 *@Required	 
 	 */ 
 	private String callback;

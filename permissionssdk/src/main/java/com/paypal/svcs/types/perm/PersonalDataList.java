@@ -5,14 +5,14 @@ import com.paypal.svcs.types.perm.PersonalData;
 import java.util.Map;
 
 /**
- * Set of personal data which forms the response of
- * GetPersonalData call. 
+ *  Set of personal data which forms the response of
+ *  GetPersonalData call. 
  */
 public class PersonalDataList{
 
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private List<PersonalData> personalData = new ArrayList<PersonalData>();
 

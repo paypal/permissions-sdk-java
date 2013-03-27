@@ -7,48 +7,48 @@ import com.paypal.svcs.types.common.ErrorParameter;
 import java.util.Map;
 
 /**
- * 
+ *  
  */
 public class ErrorData{
 
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private Integer errorId;
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private String domain;
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private String subdomain;
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private ErrorSeverity severity;
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private ErrorCategory category;
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private String message;
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private String exceptionId;
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private List<ErrorParameter> parameter = new ArrayList<ErrorParameter>();
 
