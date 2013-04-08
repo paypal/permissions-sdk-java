@@ -62,20 +62,37 @@ public class GetAccessTokenServlet extends HttpServlet {
 				"<ul><li><a href='RequestPermissions'>RequestPermissions</a></li><li><a href='GetAccessToken'>GetAccessToken</a></li><li><a href='GetPermissions'>GetPermissions</a></li><li><a href='CancelPermissions'>CancelPermissions</a></li><li><a href='GetBasicPersonalData'>GetBasicPersonalData</a></li><li><a href='GetAdvancedPersonalData'>GetAdvancedPersonalData</a></li></ul>");
 		response.setContentType("text/html");
 		try {
+			
+			// ## Creating service wrapper object
+			// Creating service wrapper object to make API call and loading
+			// configuration file for your credentials and endpoint
 			PermissionsService service = new PermissionsService(this
 					.getClass().getResourceAsStream("/sdk_config.properties"));
+			
 			GetAccessTokenRequest tokenReq = new GetAccessTokenRequest();
+			/*
+			 * (Required) RFC 3066 language in which error messages are returned; 
+			 * by default it is en_US, which is the only language currently supported.
+			 */
 			RequestEnvelope env = new RequestEnvelope("en_US");
 			tokenReq.setRequestEnvelope(env);
+			
+			
 			String text[] = request.getParameterValues("txtbox");
 			int i = 0;
 			if (text != null) {
+				//(Required) The request token from the response to RequestPermissions. 
 				tokenReq.setToken(text[i + 1]);
+				//(Required) The verification code returned in the redirect from PayPal to the return URL. 
 				tokenReq.setVerifier(text[i]);
 			} else {
 				tokenReq.setToken(request.getParameter("reqToken"));
 				tokenReq.setVerifier(request.getParameter("verCode"));
 			}
+			
+			// ## Making API call
+			// Invoke the appropriate method corresponding to API in service
+			// wrapper object
 			GetAccessTokenResponse resp = service.getAccessToken(tokenReq);
 
 			if (resp != null) {
@@ -85,8 +102,22 @@ public class GetAccessTokenServlet extends HttpServlet {
 				if (resp.getResponseEnvelope().getAck().toString()
 						.equalsIgnoreCase("SUCCESS")) {
 					Map<Object, Object> map = new LinkedHashMap<Object, Object>();
+					/*
+					 * Acknowledgement code. It is one of the following values:
+
+					    Success – The operation completed successfully.
+					    Failure – The operation failed.
+					    Warning – Warning.
+					    SuccessWithWarning – The operation completed successfully; however, there is a warning message.
+					    FailureWithWarning – The operation failed with a warning message.
+
+					 */
 					map.put("Ack", resp.getResponseEnvelope().getAck());
+					
+					//The access token that identifies a set of permissions. 
 					map.put("AccessToken", resp.getToken());
+					
+					//The secret associated with the access token. 
 					map.put("TokenSecret", resp.getTokenSecret());
 					session.setAttribute("map", map);
 					response.sendRedirect("Response.jsp");

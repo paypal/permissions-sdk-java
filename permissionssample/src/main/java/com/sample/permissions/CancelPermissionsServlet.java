@@ -61,12 +61,25 @@ public class CancelPermissionsServlet extends HttpServlet {
 				"relatedUrl",
 				"<ul><li><a href='RequestPermissions'>RequestPermissions</a></li><li><a href='GetAccessToken'>GetAccessToken</a></li><li><a href='GetPermissions'>GetPermissions</a></li><li><a href='CancelPermissions'>CancelPermissions</a></li><li><a href='GetBasicPersonalData'>GetBasicPersonalData</a></li><li><a href='GetAdvancedPersonalData'>GetAdvancedPersonalData</a></li></ul>");
 		CancelPermissionsRequest req = new CancelPermissionsRequest();
+		/*
+		 * (Required) RFC 3066 language in which error messages are returned; 
+		 * by default it is en_US, which is the only language currently supported.
+		 */
 		RequestEnvelope requestEnvelope = new RequestEnvelope("en_US");
 		req.setRequestEnvelope(requestEnvelope);
+		
+		//(Required) The access token that identifies a set of permissions to cancel. 
 		req.setToken(request.getParameter("token"));
+		
+		// ## Creating service wrapper object
+		// Creating service wrapper object to make API call and loading
+		// configuration file for your credentials and endpoint
 		PermissionsService service = new PermissionsService(this
 				.getClass().getResourceAsStream("/sdk_config.properties"));
 		try {
+			// ## Making API call
+			// Invoke the appropriate method corresponding to API in service
+			// wrapper object
 			CancelPermissionsResponse resp = service.cancelPermissions(req);
 			response.setContentType("text/html");
 			if (resp != null) {
@@ -76,6 +89,16 @@ public class CancelPermissionsServlet extends HttpServlet {
 				if (resp.getResponseEnvelope().getAck().toString()
 						.equalsIgnoreCase("SUCCESS")) {
 					Map<Object, Object> map = new LinkedHashMap<Object, Object>();
+					/*
+					 * Acknowledgement code. It is one of the following values:
+
+					    Success – The operation completed successfully.
+					    Failure – The operation failed.
+					    Warning – Warning.
+					    SuccessWithWarning – The operation completed successfully; however, there is a warning message.
+					    FailureWithWarning – The operation failed with a warning message.
+
+					 */
 					map.put("Ack", resp.getResponseEnvelope().getAck());
 					session.setAttribute("map", map);
 					response.sendRedirect("Response.jsp");

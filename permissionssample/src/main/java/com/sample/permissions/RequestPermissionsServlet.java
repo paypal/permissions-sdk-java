@@ -59,11 +59,44 @@ public class RequestPermissionsServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		session.setAttribute("url", request.getRequestURI());
-		session.setAttribute(
-				"relatedUrl",
+		session.setAttribute("relatedUrl",
 				"<ul><li><a href='RequestPermissions'>RequestPermissions</a></li><li><a href='GetAccessToken'>GetAccessToken</a></li><li><a href='GetPermissions'>GetPermissions</a></li><li><a href='CancelPermissions'>CancelPermissions</a></li><li><a href='GetBasicPersonalData'>GetBasicPersonalData</a></li><li><a href='GetAdvancedPersonalData'>GetAdvancedPersonalData</a></li></ul>");
+		/*
+		 * (Required) RFC 3066 language in which error messages are returned; 
+		 * by default it is en_US, which is the only language currently supported.
+		 */
 		RequestEnvelope env = new RequestEnvelope("en_US");
 		List<String> scope = new ArrayList<String>();
+		/*
+		 *  (Required) At least 1 of the following permission categories:
+
+		    EXPRESS_CHECKOUT - Express Checkout
+		    DIRECT_PAYMENT - Direct payment by debit or credit card
+		    SETTLEMENT_CONSOLIDATION - Settlement consolidation
+		    SETTLEMENT_REPORTING - Settlement reporting
+		    AUTH_CAPTURE - Payment authorization and capture
+		    MOBILE_CHECKOUT - Mobile checkout
+		    BILLING_AGREEMENT - Billing agreements
+		    REFERENCE_TRANSACTION - Reference transactions
+		    AIR_TRAVEL - Express Checkout for UTAP
+		    MASS_PAY - Mass pay
+		    TRANSACTION_DETAILS - Transaction details
+		    TRANSACTION_SEARCH - Transaction search
+		    RECURRING_PAYMENTS - Recurring payments
+		    ACCOUNT_BALANCE - Account balance
+		    ENCRYPTED_WEBSITE_PAYMENTS - Encrypted website payments
+		    REFUND - Refunds
+		    NON_REFERENCED_CREDIT - Non-referenced credit
+		    BUTTON_MANAGER - Button Manager
+		    MANAGE_PENDING_TRANSACTION_STATUS includes ManagePendingTransactionStatus
+		    RECURRING_PAYMENT_REPORT - Reporting for recurring payments
+		    EXTENDED_PRO_PROCESSING_REPORT - Extended Pro processing
+		    EXCEPTION_PROCESSING_REPORT - Exception processing
+		    ACCOUNT_MANAGEMENT_PERMISSION - Account Management Permission (MAM)
+		    ACCESS_BASIC_PERSONAL_DATA - User attributes
+		    ACCESS_ADVANCED_PERSONAL_DATA - User attributes
+		    INVOICING - Invoicing
+		 */
 		String check[] = request.getParameterValues("api");
 		if (check != null) {
 			for (int i = 0; i < check.length; i++) {
@@ -71,17 +104,27 @@ public class RequestPermissionsServlet extends HttpServlet {
 			}
 		}
 		response.setContentType("text/html");
-
+		/*
+		 * (Required) Your callback function that specifies actions to take after 
+		 * the account holder grants or denies the request. 
+		 */
 		String callback = request.getParameter("callback");
 		try {
-
+			
 			RequestPermissionsRequest permRequest = new RequestPermissionsRequest(
 					scope, callback);
 			permRequest.setRequestEnvelope(env);
+			
+			// ## Creating service wrapper object
+			// Creating service wrapper object to make API call and loading
+			// configuration file for your credentials and endpoint
 			PermissionsService service = new PermissionsService(this
 					.getClass().getResourceAsStream("/sdk_config.properties"));
-			RequestPermissionsResponse resp = service
-					.requestPermissions(permRequest);
+			
+			// ## Making API call
+			// Invoke the appropriate method corresponding to API in service
+			// wrapper object
+			RequestPermissionsResponse resp = service.requestPermissions(permRequest);
 			if (resp != null) {
 				session.setAttribute("RESPONSE_OBJECT", resp);
 				session.setAttribute("lastReq", service.getLastRequest());
@@ -89,7 +132,18 @@ public class RequestPermissionsServlet extends HttpServlet {
 				if (resp.getResponseEnvelope().getAck().toString()
 						.equalsIgnoreCase("SUCCESS")) {
 					Map<Object, Object> map = new LinkedHashMap<Object, Object>();
+					/*
+					 * Acknowledgement code. It is one of the following values:
+
+					    Success – The operation completed successfully.
+					    Failure – The operation failed.
+					    Warning – Warning.
+					    SuccessWithWarning – The operation completed successfully; however, there is a warning message.
+					    FailureWithWarning – The operation failed with a warning message.
+					 */
 					map.put("Ack", resp.getResponseEnvelope().getAck());
+					
+					//(Required) A token from PayPal that enables the request to obtain permissions.
 					map.put("RequestToken", resp.getToken());
 					map.put("Redirect URL",
 							"<a href=https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_grant-permission&request_token="
