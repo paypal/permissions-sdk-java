@@ -87,8 +87,7 @@ public class GetBasicPersonalDataServlet extends HttpServlet {
 		// ## Creating service wrapper object
 		// Creating service wrapper object to make API call and loading
 		// configuration file for your credentials and endpoint
-		PermissionsService service = new PermissionsService(this
-				.getClass().getResourceAsStream("/sdk_config.properties"));
+		PermissionsService service = new PermissionsService(Utility.getSignatureConfig());
 		try {
 			//The access token that identifies a set of permissions.
 			service.setAccessToken(request.getParameter("accessToken"));
