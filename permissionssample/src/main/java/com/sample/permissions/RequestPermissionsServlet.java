@@ -118,7 +118,7 @@ public class RequestPermissionsServlet extends HttpServlet {
 			// ## Creating service wrapper object
 			// Creating service wrapper object to make API call and loading
 			// configuration file for your credentials and endpoint
-			PermissionsService service = new PermissionsService(Utility.getSignatureConfig());
+			PermissionsService service = new PermissionsService(Configuration.getSignatureConfig());
 			
 			// ## Making API call
 			// Invoke the appropriate method corresponding to API in service
