@@ -9,7 +9,7 @@ Prerequisites:
 To build and run this application:
 ----------------------------------
 
-*   Update the 'sdk_config.properties' in the 'permissionssample/src/main/resources' directory with your API credentials.
+*   Setup your API credentials and other configuration as shown in SDK README at root directory.
 *	Simply run `mvn install` to build war file.
 *	Run `mvn jetty:run` to run the war file.
 *	Access `http://localhost:<jetty-port>/permissionssample-2.2.101/` in your browser to play with the test pages.`<jetty-port>` is configurable in `pom.xml`.
