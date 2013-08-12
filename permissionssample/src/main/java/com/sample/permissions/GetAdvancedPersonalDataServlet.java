@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.paypal.core.credential.SignatureCredential;
+import com.paypal.core.credential.ThirdPartyAuthorization;
+import com.paypal.core.credential.TokenAuthorization;
 import com.paypal.exception.ClientActionRequiredException;
 import com.paypal.exception.HttpErrorException;
 import com.paypal.exception.InvalidCredentialException;
@@ -63,28 +66,29 @@ public class GetAdvancedPersonalDataServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		session.setAttribute("url", request.getRequestURI());
-		session.setAttribute("relatedUrl",
-				"<ul><li><a href='RequestPermissions'>RequestPermissions</a></li><li><a href='GetAccessToken'>GetAccessToken</a></li><li><a href='GetPermissions'>GetPermissions</a></li><li><a href='CancelPermissions'>CancelPermissions</a></li><li><a href='GetAdvancedPersonalData'>GetAdvancedPersonalData</a></li><li><a href='GetAdvancedPersonalData'>GetAdvancedPersonalData</a></li></ul>");
-		
+		session.setAttribute(
+				"relatedUrl",
+				"<ul><li><a href='RequestPermissions'>RequestPermissions</a></li><li><a href='GetAccessToken'>GetAccessToken</a></li><li><a href='GetPermissions'>GetPermissions</a></li><li><a href='CancelPermissions'>CancelPermissions</a></li><li><a href='GetBasicPersonalData'>GetBasicPersonalData</a></li><li><a href='GetAdvancedPersonalData'>GetAdvancedPersonalData</a></li></ul>");
+
 		GetAdvancedPersonalDataRequest req = new GetAdvancedPersonalDataRequest();
 		/*
-		 * (Required) RFC 3066 language in which error messages are returned; 
-		 * by default it is en_US, which is the only language currently supported.
+		 * (Required) RFC 3066 language in which error messages are returned; by
+		 * default it is en_US, which is the only language currently supported.
 		 */
 		RequestEnvelope requestEnvelope = new RequestEnvelope("en_US");
 		req.setRequestEnvelope(requestEnvelope);
-		
-		/*
-		 * The attributes whose value you are requesting. 
-		 * You specify one or more of the following URIs:
 
-		    http://axschema.org/birthDate – Date of birth
-		    http://axschema.org/contact/postalCode/home – Postcode
-		    http://schema.openid.net/contact/street1 – Street1
-		    http://schema.openid.net/contact/street2 – Street2
-		    http://axschema.org/contact/city/home – City
-		    http://axschema.org/contact/state/home – State
-		    http://axschema.org/contact/phone/default – Phone
+		/*
+		 * The attributes whose value you are requesting. You specify one or
+		 * more of the following URIs:
+		 * 
+		 * http://axschema.org/birthDate – Date of birth
+		 * http://axschema.org/contact/postalCode/home – Postcode
+		 * http://schema.openid.net/contact/street1 – Street1
+		 * http://schema.openid.net/contact/street2 – Street2
+		 * http://axschema.org/contact/city/home – City
+		 * http://axschema.org/contact/state/home – State
+		 * http://axschema.org/contact/phone/default – Phone
 		 */
 		List<PersonalAttribute> lst = new ArrayList<PersonalAttribute>();
 		String check[] = request.getParameterValues("attr");
@@ -94,59 +98,73 @@ public class GetAdvancedPersonalDataServlet extends HttpServlet {
 		PersonalAttributeList attribute = new PersonalAttributeList();
 		attribute.setAttribute(lst);
 		req.setAttributeList(attribute);
-		
+
+		// The access token that identifies a set of permissions.
+		// The secret associated with the access token.
+		ThirdPartyAuthorization thirdPartyAuth = new TokenAuthorization(
+				request.getParameter("accessToken"),
+				request.getParameter("tokenSecret"));
+
+		SignatureCredential cred = new SignatureCredential(
+				"jb-us-seller_api1.paypal.com", "WX4WTU3S8MY44S7F",
+				"AFcWxV21C7fd0v3bYYYRCpSSRl31A7yDhhsPUU2XhtMoZXsWHFxu-RWy");
+
+		cred.setApplicationId("APP-80W284485P519543T");
+		cred.setThirdPartyAuthorization(thirdPartyAuth);
+
 		// ## Creating service wrapper object
 		// Creating service wrapper object to make API call and loading
 		// configuration file for your credentials and endpoint
-		PermissionsService service = new PermissionsService(Configuration.getSignatureConfig());
+		PermissionsService service = new PermissionsService(
+				Configuration.getConfig());
 		try {
-			
-			//The access token that identifies a set of permissions.
-			service.setAccessToken(request.getParameter("accessToken"));
-			//The secret associated with the access token. 
-			service.setTokenSecret(request.getParameter("tokenSecret"));
-			
+
 			// ## Making API call
 			// Invoke the appropriate method corresponding to API in service
 			// wrapper object
-			GetAdvancedPersonalDataResponse resp = service.getAdvancedPersonalData(req);
+			GetAdvancedPersonalDataResponse resp = service
+					.getAdvancedPersonalData(req, cred);
 			response.setContentType("text/html");
 			if (resp != null) {
 				session.setAttribute("RESPONSE_OBJECT", resp);
 				session.setAttribute("lastReq", service.getLastRequest());
 				session.setAttribute("lastResp", service.getLastResponse());
-				if (resp.getResponseEnvelope().getAck().toString().equalsIgnoreCase("SUCCESS")) {
+				if (resp.getResponseEnvelope().getAck().toString()
+						.equalsIgnoreCase("SUCCESS")) {
 					Map<Object, Object> map = new LinkedHashMap<Object, Object>();
 					/*
 					 * Acknowledgement code. It is one of the following values:
-
-					    Success – The operation completed successfully.
-					    Failure – The operation failed.
-					    Warning – Warning.
-					    SuccessWithWarning – The operation completed successfully; however, there is a warning message.
-					    FailureWithWarning – The operation failed with a warning message.
+					 * 
+					 * Success – The operation completed successfully. Failure –
+					 * The operation failed. Warning – Warning.
+					 * SuccessWithWarning – The operation completed
+					 * successfully; however, there is a warning message.
+					 * FailureWithWarning – The operation failed with a warning
+					 * message.
 					 */
 					map.put("Ack", resp.getResponseEnvelope().getAck());
-					Iterator<PersonalData> iterator = resp.getResponse().getPersonalData().iterator();
+					Iterator<PersonalData> iterator = resp.getResponse()
+							.getPersonalData().iterator();
 					int index = 1;
 					while (iterator.hasNext()) {
 						PersonalData personalData = iterator.next();
 						/*
-						 * The attributes whose values you are requesting. 
-						 * You specify one or more of the following URIs:
-
-						    http://axschema.org/namePerson/first – First name
-						    http://axschema.org/namePerson/last – last name
-						    http://axschema.org/contact/email – Email
-						    http://schema.openid.net/contact/fullname – Full name
-						    http://openid.net/schema/company/name – Business name
-						    http://axschema.org/contact/country/home – Country
-						    https://www.paypal.com/webapps/auth/schema/payerID – Payer ID
+						 * The attributes whose values you are requesting. You
+						 * specify one or more of the following URIs:
+						 * 
+						 * http://axschema.org/namePerson/first – First name
+						 * http://axschema.org/namePerson/last – last name
+						 * http://axschema.org/contact/email – Email
+						 * http://schema.openid.net/contact/fullname – Full name
+						 * http://openid.net/schema/company/name – Business name
+						 * http://axschema.org/contact/country/home – Country
+						 * https://www.paypal.com/webapps/auth/schema/payerID –
+						 * Payer ID
 						 */
 						map.put("PersonalDataKey" + index, personalData
 								.getPersonalDataKey().getValue());
-						
-						//The value associated with the key
+
+						// The value associated with the key
 						map.put("PersonalDataValue" + index,
 								personalData.getPersonalDataValue());
 						index++;
