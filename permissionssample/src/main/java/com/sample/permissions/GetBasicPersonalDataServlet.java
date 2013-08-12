@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.paypal.core.credential.SignatureCredential;
+import com.paypal.core.credential.ThirdPartyAuthorization;
+import com.paypal.core.credential.TokenAuthorization;
 import com.paypal.exception.ClientActionRequiredException;
 import com.paypal.exception.HttpErrorException;
 import com.paypal.exception.InvalidCredentialException;
@@ -84,21 +87,29 @@ public class GetBasicPersonalDataServlet extends HttpServlet {
 		attribute.setAttribute(lst);
 		req.setAttributeList(attribute);
 		
+		//The access token that identifies a set of permissions.
+		//The secret associated with the access token. 
+		ThirdPartyAuthorization thirdPartyAuth = new TokenAuthorization(
+				request.getParameter("accessToken"),
+				request.getParameter("tokenSecret"));
+
+		SignatureCredential cred = new SignatureCredential(
+				"jb-us-seller_api1.paypal.com", "WX4WTU3S8MY44S7F",
+				"AFcWxV21C7fd0v3bYYYRCpSSRl31A7yDhhsPUU2XhtMoZXsWHFxu-RWy");
+		
+		cred.setApplicationId("APP-80W284485P519543T");
+		cred.setThirdPartyAuthorization(thirdPartyAuth);
+		
 		// ## Creating service wrapper object
 		// Creating service wrapper object to make API call and loading
 		// configuration file for your credentials and endpoint
-		PermissionsService service = new PermissionsService(this
-				.getClass().getResourceAsStream("/sdk_config.properties"));
+		PermissionsService service = new PermissionsService(Configuration.getConfig());
 		try {
-			//The access token that identifies a set of permissions.
-			service.setAccessToken(request.getParameter("accessToken"));
-			//The secret associated with the access token. 
-			service.setTokenSecret(request.getParameter("tokenSecret"));
-			
+
 			// ## Making API call
 			// Invoke the appropriate method corresponding to API in service
 			// wrapper object
-			GetBasicPersonalDataResponse resp = service.getBasicPersonalData(req);
+			GetBasicPersonalDataResponse resp = service.getBasicPersonalData(req, cred);
 			response.setContentType("text/html");
 			if (resp != null) {
 				session.setAttribute("RESPONSE_OBJECT", resp);
