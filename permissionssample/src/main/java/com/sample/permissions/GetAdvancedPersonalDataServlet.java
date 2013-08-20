@@ -113,8 +113,10 @@ public class GetAdvancedPersonalDataServlet extends HttpServlet {
 		cred.setThirdPartyAuthorization(thirdPartyAuth);
 
 		// ## Creating service wrapper object
-		// Creating service wrapper object to make API call and loading
-		// configuration file for your credentials and endpoint
+		// Creating service wrapper object to make API call
+		// Configuration map containing mode and other required configuration.
+		// For a full list of configuration parameters refer in wiki page. 
+		// (https://github.com/paypal/sdk-core-java/wiki/SDK-Configuration-Parameters)
 		PermissionsService service = new PermissionsService(
 				Configuration.getConfig());
 		try {

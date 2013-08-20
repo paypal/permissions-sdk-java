@@ -3,7 +3,7 @@ package com.sample.permissions;
 import java.util.HashMap;
 import java.util.Map;
 /**
- *  For a full list of configuration parameters refer at [https://github.com/paypal/permissions-sdk-java/wiki/SDK-Configuration-Parameters] 
+ *  For a full list of configuration parameters refer in wiki page(https://github.com/paypal/For a full list of configuration parameters refer in wiki page/SDK-Configuration-Parameters) 
  */
 public class Configuration {
 	
