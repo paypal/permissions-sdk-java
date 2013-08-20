@@ -116,8 +116,10 @@ public class RequestPermissionsServlet extends HttpServlet {
 			permRequest.setRequestEnvelope(env);
 			
 			// ## Creating service wrapper object
-			// Creating service wrapper object to make API call and loading
-			// configuration file for your credentials and endpoint
+			// Creating service wrapper object to make API call 
+			// Configuration map containing signature credentials and other required configuration.
+			// For a full list of configuration parameters refer in wiki page. 
+			// (https://github.com/paypal/sdk-core-java/wiki/SDK-Configuration-Parameters)
 			PermissionsService service = new PermissionsService(Configuration.getAcctAndConfig());
 			
 			// ## Making API call
