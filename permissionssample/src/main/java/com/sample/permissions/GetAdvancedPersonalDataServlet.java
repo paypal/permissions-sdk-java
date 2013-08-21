@@ -110,8 +110,8 @@ public class GetAdvancedPersonalDataServlet extends HttpServlet {
 					request.getParameter("accessToken"),
 					request.getParameter("tokenSecret"));
 
-			SignatureCredential cred = new SignatureCredential(
-					"jb-us-seller_api1.paypal.com", "WX4WTU3S8MY44S7F",
+			cred = new SignatureCredential("jb-us-seller_api1.paypal.com",
+					"WX4WTU3S8MY44S7F",
 					"AFcWxV21C7fd0v3bYYYRCpSSRl31A7yDhhsPUU2XhtMoZXsWHFxu-RWy");
 
 			cred.setApplicationId("APP-80W284485P519543T");
