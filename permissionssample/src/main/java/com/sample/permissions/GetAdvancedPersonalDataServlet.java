@@ -99,33 +99,42 @@ public class GetAdvancedPersonalDataServlet extends HttpServlet {
 		attribute.setAttribute(lst);
 		req.setAttributeList(attribute);
 
-		// The access token that identifies a set of permissions.
-		// The secret associated with the access token.
-		ThirdPartyAuthorization thirdPartyAuth = new TokenAuthorization(
-				request.getParameter("accessToken"),
-				request.getParameter("tokenSecret"));
+		SignatureCredential cred = null;
+		if (request.getParameter("accessToken") != null
+				&& request.getParameter("accessToken").length() > 0
+				&& request.getParameter("tokenSecret") != null
+				&& request.getParameter("tokenSecret").length() > 0) {
+			// The access token that identifies a set of permissions.
+			// The secret associated with the access token.
+			ThirdPartyAuthorization thirdPartyAuth = new TokenAuthorization(
+					request.getParameter("accessToken"),
+					request.getParameter("tokenSecret"));
 
-		SignatureCredential cred = new SignatureCredential(
-				"jb-us-seller_api1.paypal.com", "WX4WTU3S8MY44S7F",
-				"AFcWxV21C7fd0v3bYYYRCpSSRl31A7yDhhsPUU2XhtMoZXsWHFxu-RWy");
+			SignatureCredential cred = new SignatureCredential(
+					"jb-us-seller_api1.paypal.com", "WX4WTU3S8MY44S7F",
+					"AFcWxV21C7fd0v3bYYYRCpSSRl31A7yDhhsPUU2XhtMoZXsWHFxu-RWy");
 
-		cred.setApplicationId("APP-80W284485P519543T");
-		cred.setThirdPartyAuthorization(thirdPartyAuth);
-
+			cred.setApplicationId("APP-80W284485P519543T");
+			cred.setThirdPartyAuthorization(thirdPartyAuth);
+		}
 		// ## Creating service wrapper object
 		// Creating service wrapper object to make API call
 		// Configuration map containing mode and other required configuration.
-		// For a full list of configuration parameters refer in wiki page. 
+		// For a full list of configuration parameters refer in wiki page.
 		// (https://github.com/paypal/sdk-core-java/wiki/SDK-Configuration-Parameters)
 		PermissionsService service = new PermissionsService(
-				Configuration.getConfig());
+				Configuration.getAcctAndConfig());
 		try {
 
 			// ## Making API call
 			// Invoke the appropriate method corresponding to API in service
 			// wrapper object
-			GetAdvancedPersonalDataResponse resp = service
-					.getAdvancedPersonalData(req, cred);
+			GetAdvancedPersonalDataResponse resp = null;
+			if (cred != null) {
+				resp = service.getAdvancedPersonalData(req, cred);
+			} else {
+				resp = service.getAdvancedPersonalData(req);
+			}
 			response.setContentType("text/html");
 			if (resp != null) {
 				session.setAttribute("RESPONSE_OBJECT", resp);
