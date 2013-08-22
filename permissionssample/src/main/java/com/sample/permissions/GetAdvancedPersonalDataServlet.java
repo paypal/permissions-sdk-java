@@ -82,13 +82,13 @@ public class GetAdvancedPersonalDataServlet extends HttpServlet {
 		 * The attributes whose value you are requesting. You specify one or
 		 * more of the following URIs:
 		 * 
-		 * http://axschema.org/birthDate – Date of birth
-		 * http://axschema.org/contact/postalCode/home – Postcode
-		 * http://schema.openid.net/contact/street1 – Street1
-		 * http://schema.openid.net/contact/street2 – Street2
-		 * http://axschema.org/contact/city/home – City
-		 * http://axschema.org/contact/state/home – State
-		 * http://axschema.org/contact/phone/default – Phone
+		 * http://axschema.org/birthDate - Date of birth
+		 * http://axschema.org/contact/postalCode/home - Postcode
+		 * http://schema.openid.net/contact/street1 - Street1
+		 * http://schema.openid.net/contact/street2 - Street2
+		 * http://axschema.org/contact/city/home - City
+		 * http://axschema.org/contact/state/home - State
+		 * http://axschema.org/contact/phone/default - Phone
 		 */
 		List<PersonalAttribute> lst = new ArrayList<PersonalAttribute>();
 		String check[] = request.getParameterValues("attr");
@@ -146,11 +146,11 @@ public class GetAdvancedPersonalDataServlet extends HttpServlet {
 					/*
 					 * Acknowledgement code. It is one of the following values:
 					 * 
-					 * Success – The operation completed successfully. Failure –
-					 * The operation failed. Warning – Warning.
-					 * SuccessWithWarning – The operation completed
+					 * Success - The operation completed successfully. Failure -
+					 * The operation failed. Warning - Warning.
+					 * SuccessWithWarning - The operation completed
 					 * successfully; however, there is a warning message.
-					 * FailureWithWarning – The operation failed with a warning
+					 * FailureWithWarning - The operation failed with a warning
 					 * message.
 					 */
 					map.put("Ack", resp.getResponseEnvelope().getAck());
@@ -163,13 +163,13 @@ public class GetAdvancedPersonalDataServlet extends HttpServlet {
 						 * The attributes whose values you are requesting. You
 						 * specify one or more of the following URIs:
 						 * 
-						 * http://axschema.org/namePerson/first – First name
-						 * http://axschema.org/namePerson/last – last name
-						 * http://axschema.org/contact/email – Email
-						 * http://schema.openid.net/contact/fullname – Full name
-						 * http://openid.net/schema/company/name – Business name
-						 * http://axschema.org/contact/country/home – Country
-						 * https://www.paypal.com/webapps/auth/schema/payerID –
+						 * http://axschema.org/namePerson/first - First name
+						 * http://axschema.org/namePerson/last - last name
+						 * http://axschema.org/contact/email - Email
+						 * http://schema.openid.net/contact/fullname - Full name
+						 * http://openid.net/schema/company/name - Business name
+						 * http://axschema.org/contact/country/home - Country
+						 * https://www.paypal.com/webapps/auth/schema/payerID -
 						 * Payer ID
 						 */
 						map.put("PersonalDataKey" + index, personalData
