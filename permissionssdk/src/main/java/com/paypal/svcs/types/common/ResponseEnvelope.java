@@ -3,30 +3,30 @@ import com.paypal.svcs.types.common.AckCode;
 import java.util.Map;
 
 /**
- *  This is the sample message 
+ * This is the sample message 
  */
 public class ResponseEnvelope{
 
 
 	/**
-	*  	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private String timestamp;
 
 	/**
-	*  Application level acknowledgment code. 	 
+	 * Application level acknowledgment code. 	 
 	 */ 
 	private AckCode ack;
 
 	/**
-	*  	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private String correlationId;
 
 	/**
-	*  	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private String build;
