@@ -1,8 +1,8 @@
 package com.paypal.svcs.types.perm;
 
 /**
- *  Enumeration for Personal Attributes of a user.
- *   
+ * Enumeration for Personal Attributes of a user.
+ *  
  */
 public enum  PersonalAttribute {
 

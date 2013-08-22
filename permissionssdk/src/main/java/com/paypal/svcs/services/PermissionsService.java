@@ -35,7 +35,7 @@ public class PermissionsService extends BaseService {
 	private static final String SDK_NAME = "permissions-java-sdk";
 	
 	//SDK Version
-	private static final String SDK_VERSION = "2.2.101";
+	private static final String SDK_VERSION = "2.3.106";
 
 
 	/**
@@ -129,7 +129,7 @@ public class PermissionsService extends BaseService {
 
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -146,7 +146,7 @@ public class PermissionsService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -165,7 +165,7 @@ public class PermissionsService extends BaseService {
 	}
 	
 	/**	
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -184,7 +184,7 @@ public class PermissionsService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -201,7 +201,7 @@ public class PermissionsService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -220,7 +220,7 @@ public class PermissionsService extends BaseService {
 	}
 	
 	/**	
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -239,7 +239,7 @@ public class PermissionsService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -256,7 +256,7 @@ public class PermissionsService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -275,7 +275,7 @@ public class PermissionsService extends BaseService {
 	}
 	
 	/**	
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -294,7 +294,7 @@ public class PermissionsService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -311,7 +311,7 @@ public class PermissionsService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -330,7 +330,7 @@ public class PermissionsService extends BaseService {
 	}
 	
 	/**	
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -349,7 +349,7 @@ public class PermissionsService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -366,7 +366,7 @@ public class PermissionsService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -385,7 +385,7 @@ public class PermissionsService extends BaseService {
 	}
 	
 	/**	
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -404,7 +404,7 @@ public class PermissionsService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -421,7 +421,7 @@ public class PermissionsService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -440,7 +440,7 @@ public class PermissionsService extends BaseService {
 	}
 	
 	/**	
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException

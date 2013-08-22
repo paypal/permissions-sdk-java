@@ -4,19 +4,19 @@ import java.io.UnsupportedEncodingException;
 import com.paypal.core.NVPUtil;
 
 /**
- *  Request to invalidate an access token and revoke the
- *  permissions associated with it. 
+ * Request to invalidate an access token and revoke the
+ * permissions associated with it. 
  */
 public class CancelPermissionsRequest{
 
 
 	/**
-	*  	 
+	 * 	 
 	 */ 
 	private RequestEnvelope requestEnvelope;
 
 	/**
-	*  	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private String token;
