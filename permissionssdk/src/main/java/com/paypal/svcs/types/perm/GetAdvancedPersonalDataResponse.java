@@ -7,24 +7,24 @@ import com.paypal.svcs.types.common.ErrorData;
 import java.util.Map;
 
 /**
- *  
+ * 
  */
 public class GetAdvancedPersonalDataResponse{
 
 
 	/**
-	*  	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private ResponseEnvelope responseEnvelope;
 
 	/**
-	*  	 
+	 * 	 
 	 */ 
 	private PersonalDataList response;
 
 	/**
-	*  	 
+	 * 	 
 	 */ 
 	private List<ErrorData> error = new ArrayList<ErrorData>();
 

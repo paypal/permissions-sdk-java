@@ -4,34 +4,34 @@ import java.io.UnsupportedEncodingException;
 import com.paypal.core.NVPUtil;
 
 /**
- *  The request use to retrieve a permanent access token. The
- *  client can either send the token and verifier, or a subject.
- *  
+ * The request use to retrieve a permanent access token. The
+ * client can either send the token and verifier, or a subject.
+ * 
  */
 public class GetAccessTokenRequest{
 
 
 	/**
-	*  	 
+	 * 	 
 	 */ 
 	private RequestEnvelope requestEnvelope;
 
 	/**
-	*  The temporary request token received from the
-	*  RequestPermissions call. 	 
+	 * The temporary request token received from the
+	 * RequestPermissions call. 	 
 	 */ 
 	private String token;
 
 	/**
-	*  The verifier code returned to the client after the user
-	*  authorization flow completed. 	 
+	 * The verifier code returned to the client after the user
+	 * authorization flow completed. 	 
 	 */ 
 	private String verifier;
 
 	/**
-	*  The subject email address used to represent existing 3rd
-	*  Party Permissions relationship. This field can be used in
-	*  lieu of the token and verifier. 	 
+	 * The subject email address used to represent existing 3rd
+	 * Party Permissions relationship. This field can be used in
+	 * lieu of the token and verifier. 	 
 	 */ 
 	private String subjectAlias;
 

@@ -93,11 +93,11 @@ public class CancelPermissionsServlet extends HttpServlet {
 					/*
 					 * Acknowledgement code. It is one of the following values:
 
-					    Success – The operation completed successfully.
-					    Failure – The operation failed.
-					    Warning – Warning.
-					    SuccessWithWarning – The operation completed successfully; however, there is a warning message.
-					    FailureWithWarning – The operation failed with a warning message.
+					    Success - The operation completed successfully.
+					    Failure - The operation failed.
+					    Warning - Warning.
+					    SuccessWithWarning - The operation completed successfully; however, there is a warning message.
+					    FailureWithWarning - The operation failed with a warning message.
 
 					 */
 					map.put("Ack", resp.getResponseEnvelope().getAck());

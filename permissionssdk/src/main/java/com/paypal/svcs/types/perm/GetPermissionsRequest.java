@@ -4,19 +4,19 @@ import java.io.UnsupportedEncodingException;
 import com.paypal.core.NVPUtil;
 
 /**
- *  Request to retrieve the approved list of permissions
- *  associated with a token. 
+ * Request to retrieve the approved list of permissions
+ * associated with a token. 
  */
 public class GetPermissionsRequest{
 
 
 	/**
-	*  	 
+	 * 	 
 	 */ 
 	private RequestEnvelope requestEnvelope;
 
 	/**
-	*  The permanent access token to ask about. 	  
+	 * The permanent access token to ask about. 	  
 	 *@Required	 
 	 */ 
 	private String token;
