@@ -6,25 +6,25 @@ import com.paypal.svcs.types.common.ErrorData;
 import java.util.Map;
 
 /**
- *  The list of permissions associated with the token. 
+ * The list of permissions associated with the token. 
  */
 public class GetPermissionsResponse{
 
 
 	/**
-	*  	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private ResponseEnvelope responseEnvelope;
 
 	/**
-	*  Identifier for the permissions approved for this
-	*  relationship. 	 
+	 * Identifier for the permissions approved for this
+	 * relationship. 	 
 	 */ 
 	private List<String> scope = new ArrayList<String>();
 
 	/**
-	*  	 
+	 * 	 
 	 */ 
 	private List<ErrorData> error = new ArrayList<ErrorData>();
 

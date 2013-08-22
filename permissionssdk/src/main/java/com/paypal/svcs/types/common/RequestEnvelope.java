@@ -3,15 +3,15 @@ import java.io.UnsupportedEncodingException;
 import com.paypal.core.NVPUtil;
 
 /**
- *  This specifies the list of parameters with every request to
- *  the service. 
+ * This specifies the list of parameters with every request to
+ * the service. 
  */
 public class RequestEnvelope{
 
 
 	/**
-	*  This should be the standard RFC 3066 language identification
-	*  tag, e.g., en_US. 	  
+	 * This should be the standard RFC 3066 language identification
+	 * tag, e.g., en_US. 	  
 	 *@Required	 
 	 */ 
 	private String errorLanguage;

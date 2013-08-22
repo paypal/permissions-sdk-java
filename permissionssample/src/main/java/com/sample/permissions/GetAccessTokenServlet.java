@@ -64,10 +64,11 @@ public class GetAccessTokenServlet extends HttpServlet {
 		try {
 			
 			// ## Creating service wrapper object
-			// Creating service wrapper object to make API call and loading
-			// configuration file for your credentials and endpoint
-			PermissionsService service = new PermissionsService(this
-					.getClass().getResourceAsStream("/sdk_config.properties"));
+			// Creating service wrapper object to make API call 
+			// Configuration map containing signature credentials and other required configuration.
+			// For a full list of configuration parameters refer in wiki page. 
+			// (https://github.com/paypal/sdk-core-java/wiki/SDK-Configuration-Parameters)
+			PermissionsService service = new PermissionsService(Configuration.getAcctAndConfig());
 			
 			GetAccessTokenRequest tokenReq = new GetAccessTokenRequest();
 			/*
@@ -105,11 +106,11 @@ public class GetAccessTokenServlet extends HttpServlet {
 					/*
 					 * Acknowledgement code. It is one of the following values:
 
-					    Success – The operation completed successfully.
-					    Failure – The operation failed.
-					    Warning – Warning.
-					    SuccessWithWarning – The operation completed successfully; however, there is a warning message.
-					    FailureWithWarning – The operation failed with a warning message.
+					    Success - The operation completed successfully.
+					    Failure - The operation failed.
+					    Warning - Warning.
+					    SuccessWithWarning - The operation completed successfully; however, there is a warning message.
+					    FailureWithWarning - The operation failed with a warning message.
 
 					 */
 					map.put("Ack", resp.getResponseEnvelope().getAck());
