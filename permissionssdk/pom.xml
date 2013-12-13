@@ -7,7 +7,7 @@
 	</parent>
   <groupId>com.paypal.sdk</groupId>
   <artifactId>permissionssdk</artifactId>
-  <version>2.3.106</version>
+  <version>2.4.109</version>
   <name>PermissionsSDK</name>
   <description>The PayPal Permission SDK provides Java APIs for developers to request and obtain permissions from merchants and consumers, to execute APIs on behalf of them. The permissions include variety of operations from processing payments to accessing account transaction history. </description>
   <url>https://developer.paypal.com/</url>
@@ -22,7 +22,7 @@
   	<dependency>
   		<groupId>com.paypal.sdk</groupId>
   		<artifactId>paypal-core</artifactId>
-  		<version>1.4.4</version>
+  		<version>1.5.1</version>
   	</dependency>
   </dependencies>
  <build>
