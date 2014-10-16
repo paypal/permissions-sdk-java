@@ -25,7 +25,7 @@ For Maven Users:
 
         mvn install:install-file -Dfile=commons-codec-1.3.jar -DgroupId=commons-codec -DartifactId=commons-codec -Dversion=1.3 -Dpackaging=jar
         mvn install:install-file -Dfile=paypal-core-1.0.jar -DgroupId=com.paypal.sdk -DartifactId=paypal-core -Dversion=1.0 -Dpackaging=jar
-		mvn install:install-file -Dfile=permissionssdk-2.4.109.jar -DgroupId=com.paypal.sdk -DartifactId=permissionssdk -Dversion=2.4.109 -Dpackaging=jar	
+		mvn install:install-file -Dfile=permissionssdk-2.5.109.jar -DgroupId=com.paypal.sdk -DartifactId=permissionssdk -Dversion=2.5.109 -Dpackaging=jar	
 
 *	Create a new maven application.
 
@@ -35,7 +35,7 @@ For Maven Users:
     <dependency>
         <groupId>com.paypal.sdk</groupId>
         <artifactId>permissionssdk</artifactId>
-        <version>2.4.109</version>
+        <version>2.5.109</version>
     </dependency>
     ```
 
