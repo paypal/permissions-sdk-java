@@ -35,7 +35,7 @@ public class PermissionsService extends BaseService {
 	private static final String SDK_NAME = "permissions-java-sdk";
 	
 	//SDK Version
-	private static final String SDK_VERSION = "2.4.109";
+	private static final String SDK_VERSION = "2.5.109";
 
 
 	/**
