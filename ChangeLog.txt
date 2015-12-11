@@ -1,3 +1,10 @@
+Version 2.6.109
+ 
+	- Updated core version
+	
+You can see source code of this release in github under https://github.com/paypal/permissions-sdk-java/tree/v2.6.109.
+--------------------------------------------------------------------------------------------------
+
 Version 2.5.109 - October 17, 2014
  
 	- Updated core version
