@@ -119,7 +119,7 @@ public class RequestPermissionsServlet extends HttpServlet {
 			// Creating service wrapper object to make API call 
 			// Configuration map containing signature credentials and other required configuration.
 			// For a full list of configuration parameters refer in wiki page. 
-			// (https://github.com/paypal/sdk-core-java/wiki/SDK-Configuration-Parameters)
+			// (https://github.com/paypal/sdk-core-java/blob/master/README.md)
 			PermissionsService service = new PermissionsService(Configuration.getAcctAndConfig());
 			
 			// ## Making API call
